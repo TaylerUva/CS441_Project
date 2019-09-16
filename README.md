@@ -7,4 +7,4 @@
  - Uses XAML as frontend
  - Uses C# as backend
 
-[Online UML Tool](https://online.visual-paradigm.com/diagrams/features/uml-tool/)
+[Online UML Tool](https://diagrams.visual-paradigm.com/#proj=0&type=ClassDiagram)

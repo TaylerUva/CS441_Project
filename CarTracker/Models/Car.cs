@@ -16,6 +16,7 @@ namespace CarTracker.Models {
         public string vin { get; }
         public string name { get; set; }
         //TODO: Add photo
+        // Test
 
         public Car(string licensePlateNumber, string vehicleMake, string vehicleModel, Color vehicleColor, string vehicleVin, string carNickname) {
             plate = licensePlateNumber;

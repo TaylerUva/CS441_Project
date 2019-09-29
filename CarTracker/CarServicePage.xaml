@@ -5,13 +5,12 @@
 	xmlns:d      = "http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc     = "http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable = "d"
-	x:Class      = "CarTracker.MainPage">
+	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
 	<StackLayout>
 		<!-- Place new controls here -->
 		<Label
-			Text              = "Welcome to Xamarin.Forms!"
+			Text              = "Service Page!"
 			HorizontalOptions = "Center"
 			VerticalOptions   = "CenterAndExpand" />
-        <Button Text="Click Me" Clicked= "Next_Page_Clicked" />
 	</StackLayout>
 </ContentPage>

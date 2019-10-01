@@ -12,6 +12,7 @@
 			Text              = "Welcome to Xamarin.Forms!"
 			HorizontalOptions = "Center"
 			VerticalOptions   = "CenterAndExpand" />
+        <Button Text="Your Cars" Clicked= "YourCarsClicked" />
         <Button Text="Click Me" Clicked= "Next_Page_Clicked" />
 	</StackLayout>
 </ContentPage>

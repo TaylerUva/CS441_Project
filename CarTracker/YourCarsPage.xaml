@@ -3,12 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarTracker.YourCarsPage">
     <ContentPage.Content>
-        <StackLayout>
-           <Entry x:Name="slugName" 
-               HorizontalOptions="CenterAndExpand"
-               Placeholder="Enter a slug name" 
-               VerticalOptions="Center"/>
-        </StackLayout>
+        <AbsoluteLayout>
+            <StackLayout>
+                <Entry x:Name="slugName"
+                       HorizontalOptions="CenterAndExpand"
+                       Placeholder="Enter a slug name"
+                       VerticalOptions="Center" />
+                <Button HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clicked="AddNewCarClicked"
+                        Text="Add New Car" />
+                <Button HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clicked="OnSortClicked"
+                        Text="Sort" />
+                <Label x:Name="testLabel" />
+            </StackLayout>
+            <ContentView x:Name="popupLoginView"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0"
+                         IsVisible="false"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical"
+                                 HeightRequest="500"
+                                 WidthRequest="300"
+                                 BackgroundColor="White">
+                        <Entry Margin="20,20,20,10"
+                               x:Name="plate"
+                               Placeholder="License Plate"></Entry>
+                        <Entry Margin="20,0,20,0"
+                               x:Name="make"
+                               Placeholder="Make"></Entry>
+                        <Entry Margin="20,20,20,10"
+                               x:Name="model"
+                               Placeholder="Model"></Entry>
+                        <Entry Margin="20,0,20,0"
+                               x:Name="carColor"
+                               Placeholder="Color"></Entry>
+                        <Entry Margin="20,20,20,10"
+                               x:Name="vin"
+                               Placeholder="VIM"></Entry>
+                        <Entry Margin="20,0,20,0"
+                               x:Name="name"
+                               Placeholder="Name"></Entry>
+                        <!--
+                        <Entry Margin="20,0,20,0"
+                               x:Name="photo"
+                               Placeholder="Photo"></Entry>-->
+                        <Button Clicked="ConfirmNewCar"
+                                Margin="20,0,20,0"
+                                Text="Add car" />
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
 

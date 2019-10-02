@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarTracker\CarTracker.csproj">
-      <Project>{172DBC01-1F13-40DA-878D-6F8DDAA03FF2}</Project>
+      <Project>{653BDB28-3E57-441B-A61C-A002AE60EF9D}</Project>
       <Name>CarTracker</Name>
     </ProjectReference>
   </ItemGroup>

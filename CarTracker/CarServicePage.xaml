@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application
+<ContentPage
 	xmlns       = "http://xamarin.com/schemas/2014/forms"
 	xmlns:x      = "http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d      = "http://xamarin.com/schemas/2014/forms/design"
@@ -7,7 +7,12 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
 ios:Page.UseSafeArea="true"
 	mc:Ignorable = "d"
-	x:Class      = "CarTracker.App">
-	<Application.Resources>
-	</Application.Resources>
-</Application>
+	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
+	<StackLayout>
+		<!-- Place new controls here -->
+		<Label
+			Text              = "Service Page!"
+			HorizontalOptions = "Center"
+			VerticalOptions   = "CenterAndExpand" />
+	</StackLayout>
+</ContentPage>

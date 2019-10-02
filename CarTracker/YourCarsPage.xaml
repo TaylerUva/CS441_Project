@@ -20,6 +20,37 @@
 						Clicked="OnSortClicked"
 						Text="Sort" />
 				<Label x:Name="testLabel" />
+				<ListView x:Name="yourCarsList">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ViewCell.View>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<StackLayout Grid.Column="1"
+													 Grid.Row="0"
+													 Orientation="Horizontal">
+											<Label Text="{Binding name}" />
+											<Label Text="{Binding plate}" />
+										</StackLayout>
+										<StackLayout Grid.Column="1"
+													 Grid.Row="1"
+													 Orientation="Horizontal">
+											<Label Text="{Binding v_color}" />
+										</StackLayout>
+									</Grid>
+								</ViewCell.View>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
 			</StackLayout>
 			<ContentView x:Name="popupLoginView"
 						 BackgroundColor="#C0808080"

@@ -10,8 +10,7 @@ ios:Page.UseSafeArea="true"
 	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
 	<StackLayout>
 		<!-- Place new controls here -->
-          <Button Text="Last Service"
-				Clicked="Last_Services_Clicked" />
+          
 		<Label
 			Text              = "Service Page!"
 			HorizontalOptions = "Center"

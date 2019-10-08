@@ -18,10 +18,7 @@ namespace CarTracker
             InitializeComponent();
         }
 
-        async void Last_Services_Clicked(object sender, System.EventArgs e)
-        {
-            await Navigation.PushAsync(new LastService());
-        }
+       
     }
 
 }

@@ -10,10 +10,22 @@ ios:Page.UseSafeArea="true"
 	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
 	<StackLayout>
 		<!-- Place new controls here -->
-          
+        <Entry x:Name="slugName"
+					   HorizontalOptions="CenterAndExpand"
+					   Placeholder="Enter a slug name"
+					   VerticalOptions="Center" />
+		<Button HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Clicked="AddNewCarClicked"
+						Text="My Service" />
+		<Button HorizontalOptions="Center"
+						VerticalOptions="Center"
+						Clicked="OnSortClicked"
+						Text="Sort" />
 		<Label
 			Text              = "Service Page!"
 			HorizontalOptions = "Center"
 			VerticalOptions   = "CenterAndExpand" />
 	</StackLayout>
+    
 </ContentPage>

@@ -14,7 +14,7 @@
       
         <Button Text="Your Cars"
 				Clicked="YourCarsClicked" />
-		<Button Text="Click Me"
+		<Button Text="Service Page"
 				Clicked="Next_Page_Clicked" />
 	</StackLayout>
 </ContentPage>

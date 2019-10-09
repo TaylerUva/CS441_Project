@@ -18,7 +18,18 @@ namespace CarTracker
             InitializeComponent();
         }
 
-       
+        private void AddNewCarClicked(object sender, System.EventArgs e)
+        {
+            
+        }
+
+        private void OnSortClicked(object sender, System.EventArgs e)
+        {
+          
+        }
+
     }
+
+   
 
 }

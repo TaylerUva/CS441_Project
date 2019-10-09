@@ -6,6 +6,7 @@ using Xamarin.Forms;
 
 namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
+
         public static ObservableCollection<Car> Cars = new ObservableCollection<Car>();
         public YourCarsPage() {
             InitializeComponent();
@@ -39,7 +40,31 @@ namespace CarTracker {
         }
 
         private void SortByPlate() {
-            //Cars.Sort();
+            //CarSort sorting = new CarSort();
+            //List <Car> tempList = new List<Car>(Cars);
+            //tempList.Sort((IComparer<Car>)sorting);
+            //Cars = new ObservableCollection<Car>(Cars.OrderBy(i => i));
+
+
+            List<Car> tempList = new List<Car>(Cars);
+            int minIndex = 0;
+            
+            for(int i = 0; i < tempList.Count; i ++)
+            {
+                minIndex = i;
+                for(int unsort = i + 1; unsort < tempList.Count; unsort++)
+                {
+                    if (string.Compare(tempList[unsort].plate, tempList[minIndex].plate) == -1)
+                    {
+                        minIndex = unsort;
+                    }
+                }
+                Car tempCar = tempList[minIndex];
+                tempList[minIndex] = tempList[i];
+                tempList[i] = tempCar;
+            }
+            Cars = new ObservableCollection<Car>(tempList);
+            yourCarsList.ItemsSource = Cars;
         }
         private void SortByMake() {
 

@@ -8,7 +8,9 @@
 ios:Page.UseSafeArea="true"
 	mc:Ignorable = "d"
 	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
-	<StackLayout>
+   <ContentPage.Content>
+	<AbsoluteLayout>
+       <StackLayout>
 		<!-- Place new controls here -->
         <Entry x:Name="slugName"
 					   HorizontalOptions="CenterAndExpand"
@@ -55,5 +57,41 @@ ios:Page.UseSafeArea="true"
 					</ListView.ItemTemplate>
 				</ListView>
 	</StackLayout>
-    
+   <ContentView x:Name="ServiceView"
+						 BackgroundColor="#C0808080"
+						 Padding="10, 0"
+						 IsVisible="false"
+						 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+						 AbsoluteLayout.LayoutFlags="All">
+				<StackLayout VerticalOptions="Center"
+							 HorizontalOptions="Center">
+					<StackLayout Orientation="Vertical"
+								 HeightRequest="500"
+								 WidthRequest="300"
+								 BackgroundColor="White">
+						<Entry Margin="20,20,20,10"
+							   x:Name="plate"
+							   Placeholder="Name"></Entry>
+						<Entry Margin="20,0,20,0"
+							   x:Name="make"
+							   Placeholder="Make"></Entry>
+						<Entry Margin="20,20,20,10"
+							   x:Name="model"
+							   Placeholder="Date"></Entry>
+						<Entry Margin="20,0,20,0"
+							   x:Name="carColor"
+							   Placeholder="Service"></Entry>
+						<Entry Margin="20,20,20,10"
+							   x:Name="vin"
+							   Placeholder="Fee"></Entry>
+						<Entry Margin="20,0,20,0"
+							   x:Name="name"
+							   Placeholder="//////"></Entry>
+						
+					</StackLayout>
+				</StackLayout>
+			</ContentView>
+        	</AbsoluteLayout>
+	</ContentPage.Content>
+              
 </ContentPage>

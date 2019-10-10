@@ -20,7 +20,7 @@ namespace CarTracker
 
         private void AddNewCarClicked(object sender, System.EventArgs e)
         {
-            
+            ServiceView.IsVisible = true;
         }
 
         private void OnSortClicked(object sender, System.EventArgs e)

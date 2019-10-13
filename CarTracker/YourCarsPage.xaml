@@ -4,18 +4,7 @@
         <AbsoluteLayout>
             <StackLayout>
                 <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="AddNewCarClicked" Text="Add New Car" />
-                <Picker x:Name="sortPicker" Title="Select a monkey" HorizontalOptions="Center">
-                    <!--<Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Sort by license plate</x:String>
-                            <x:String>Sort by make</x:String>
-                            <x:String>Sort by model</x:String>
-                            <x:String>Sort by VIN</x:String>
-                            <x:String>Sort by nickname</x:String>
-                        </x:Array>
-                        <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />
-                    </Picker.ItemsSource>-->
-                </Picker>
+                <Picker x:Name="sortPicker" Title="Sort by" HorizontalOptions="Center" />
                 <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSortClicked" Text="Sort" />
                 <Label x:Name="testLabel" />
                 <ListView x:Name="yourCarsList">

@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true"
-             x:Class="CarTracker.YourCarsPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" x:Class="CarTracker.YourCarsPage">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout>
-                <Button HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Clicked="AddNewCarClicked"
-                        Text="Add New Car" />
-                <Button HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Clicked="OnSortClicked"
-                        Text="Sort" />
+                <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="AddNewCarClicked" Text="Add New Car" />
+                <Picker x:Name="sortPicker" Title="Select a monkey" HorizontalOptions="Center">
+                    <!--<Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sort by license plate</x:String>
+                            <x:String>Sort by make</x:String>
+                            <x:String>Sort by model</x:String>
+                            <x:String>Sort by VIN</x:String>
+                            <x:String>Sort by nickname</x:String>
+                        </x:Array>
+                        <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />
+                    </Picker.ItemsSource>-->
+                </Picker>
+                <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSortClicked" Text="Sort" />
                 <Label x:Name="testLabel" />
                 <ListView x:Name="yourCarsList">
                     <ListView.ItemTemplate>
@@ -30,16 +32,14 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <StackLayout Grid.Column="1"
-                                                     Grid.Row="0"
-                                                     Orientation="Horizontal">
-                                            <Label Text="{Binding name}" />
+                                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                                             <Label Text="{Binding plate}" />
+                                            <Label Text="{Binding make}" />
+                                            <Label Text="{Binding model}" />
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1"
-                                                     Grid.Row="1"
-                                                     Orientation="Horizontal">
-                                            <Label Text="{Binding plate}" />
+                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                            <Label Text="{Binding vin}" />
+                                            <Label Text="{Binding name}" />
                                         </StackLayout>
                                     </Grid>
                                 </ViewCell.View>
@@ -48,43 +48,20 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <ContentView x:Name="popupLoginView"
-                         BackgroundColor="#C0808080"
-                         Padding="10, 0"
-                         IsVisible="false"
-                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                         AbsoluteLayout.LayoutFlags="All">
-                <StackLayout VerticalOptions="Center"
-                             HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical"
-                                 HeightRequest="500"
-                                 WidthRequest="300"
-                                 BackgroundColor="White">
-                        <Entry Margin="20,20,20,10"
-                               x:Name="plate"
-                               Placeholder="License Plate"></Entry>
-                        <Entry Margin="20,0,20,0"
-                               x:Name="make"
-                               Placeholder="Make"></Entry>
-                        <Entry Margin="20,20,20,10"
-                               x:Name="model"
-                               Placeholder="Model"></Entry>
-                        <Entry Margin="20,0,20,0"
-                               x:Name="carColor"
-                               Placeholder="Color"></Entry>
-                        <Entry Margin="20,20,20,10"
-                               x:Name="vin"
-                               Placeholder="VIM"></Entry>
-                        <Entry Margin="20,0,20,0"
-                               x:Name="name"
-                               Placeholder="Name"></Entry>
+            <ContentView x:Name="popupLoginView" BackgroundColor="#C0808080" Padding="10, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical" HeightRequest="500" WidthRequest="300" BackgroundColor="White">
+                        <Entry Margin="20,20,20,10" x:Name="plate" Placeholder="License Plate"></Entry>
+                        <Entry Margin="20,0,20,0" x:Name="make" Placeholder="Make"></Entry>
+                        <Entry Margin="20,20,20,10" x:Name="model" Placeholder="Model"></Entry>
+                        <Entry Margin="20,0,20,0" x:Name="carColor" Placeholder="Color"></Entry>
+                        <Entry Margin="20,20,20,10" x:Name="vin" Placeholder="VIM"></Entry>
+                        <Entry Margin="20,0,20,0" x:Name="name" Placeholder="Name"></Entry>
                         <!--
                         <Entry Margin="20,0,20,0"
                                x:Name="photo"
                                Placeholder="Photo"></Entry>-->
-                        <Button Clicked="ConfirmNewCar"
-                                Margin="20,0,20,0"
-                                Text="Add car" />
+                        <Button Clicked="ConfirmNewCar" Margin="20,0,20,0" Text="Add car" />
                     </StackLayout>
                 </StackLayout>
             </ContentView>

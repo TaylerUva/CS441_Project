@@ -33,6 +33,7 @@ namespace CarTracker {
             }
 
             sortPicker.ItemsSource = PickerSortingOptions;
+            sortPicker.SelectedItem = PickerSortingOptions[0];
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e) {

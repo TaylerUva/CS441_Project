@@ -51,6 +51,7 @@
                                x:Name="photo"
                                Placeholder="Photo"></Entry>-->
                         <Button Clicked="ConfirmNewCar" Margin="20,0,20,0" Text="Add car" />
+                        <Button Clicked="CancelNewCar" Margin="20,0,20,0" Text="Cancel" />
                     </StackLayout>
                 </StackLayout>
             </ContentView>

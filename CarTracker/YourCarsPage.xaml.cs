@@ -47,6 +47,10 @@ namespace CarTracker {
             testLabel.Text = "Total Cars: " + Cars.Count.ToString();
             ClearEntryFields();
         }
+        private void CancelNewCar(object sender, System.EventArgs e)
+        {
+            popupLoginView.IsVisible = false;
+        }
 
         private void ClearEntryFields() {
             plate.Text = null;

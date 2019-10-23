@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using CarTracker.Models;
 
 namespace CarTracker
 {
@@ -13,14 +15,36 @@ namespace CarTracker
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage
     {
+        public static ObservableCollection<Service> Services = new ObservableCollection<Service>();
+
         public CarServicePage()
         {
             InitializeComponent();
+            yourCarsList.ItemsSource = Services;
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e)
         {
             ServiceView.IsVisible = true;
+        }
+
+        private void ConfirmNewName(object sender, System.EventArgs e)
+        {
+            Service newService = new Service(plate.Text, make.Text, model.Text, Models.Color.Gray, vin.Text, name.Text);
+            Services.Add(newService);
+            ServiceView.IsVisible = false;
+            testLabel.Text = "Total Service: " + Services.Count.ToString();
+            ClearEntryFields();
+        }
+
+        private void ClearEntryFields()
+        {
+            plate.Text = null;
+            make.Text = null;
+            model.Text = null;
+            carColor.Text = null;
+            vin.Text = null;
+            name.Text = null;
         }
 
         private void OnSortClicked(object sender, System.EventArgs e)

@@ -14,7 +14,7 @@ ios:Page.UseSafeArea="true"
 		<!-- Place new controls here -->
         <Entry x:Name="slugName"
 					   HorizontalOptions="CenterAndExpand"
-					   Placeholder="Enter a slug name"
+					   Placeholder="Write Here"
 					   VerticalOptions="Center" />
 		<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
@@ -87,7 +87,10 @@ ios:Page.UseSafeArea="true"
 						<Entry Margin="20,0,20,0"
 							   x:Name="name"
 							   Placeholder="//////"></Entry>
-						
+
+						<Button Clicked="ConfirmNewName"
+								Margin="20,0,20,0"
+								Text="Add Service" />
 					</StackLayout>
 				</StackLayout>
 			</ContentView>

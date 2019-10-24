@@ -7,21 +7,21 @@ public enum CarService {
         Gas,
     };
 
-    public class Entry
+    public class Service
     {
         public string date { get; }
         public int millage { get; }
         public string location { get; }
         public string description { get; }
-        public CarService carService { get; }
+        public string car { get; }
 
-        public Entry(string entryDate, int entryMillage, string entryLocation, string entryDescriprion, CarService entryCarService)
+        public Service(string entryDate, int entryMillage, string entryLocation, string entryDescriprion, string entryCar)
         {
             date = entryDate;
             millage = entryMillage;
             location = entryLocation;
             description = entryDescriprion;
-            carService = entryCarService;
+            car = entryCar;
         }
     }
 }

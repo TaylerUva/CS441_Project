@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage
-	xmlns       = "http://xamarin.com/schemas/2014/forms"
-	xmlns:x      = "http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:d      = "http://xamarin.com/schemas/2014/forms/design"
-	xmlns:mc     = "http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
-ios:Page.UseSafeArea="true"
-	mc:Ignorable = "d"
-	x:Class      = "CarTracker.CarServicePage">  <!--cartracker = class & carservicepage = page its going to-->
-   <ContentPage.Content>
-	<AbsoluteLayout>
-       <StackLayout>
-		<!-- Place new controls here -->
-        <Entry x:Name="slugName"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+			 ios:Page.UseSafeArea="true"
+			 mc:Ignorable="d"
+			 x:Class="CarTracker.CarServicePage">
+	<!--cartracker = class & carservicepage = page its going to-->
+	<ContentPage.Content>
+		<AbsoluteLayout>
+			<StackLayout>
+				<!-- Place new controls here -->
+				<Entry x:Name="slugName"
 					   HorizontalOptions="CenterAndExpand"
 					   Placeholder="Write Here"
 					   VerticalOptions="Center" />
-		<Button HorizontalOptions="Center"
+				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="AddNewCarClicked"
 						Text="My Service" />
-		<Button HorizontalOptions="Center"
+				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
 						Text="Sort" />
-        <Label x:Name="testLabel" />
-        <ListView x:Name="yourCarsList">
+				<Label x:Name="testLabel" />
+				<ListView x:Name="yourCarsList">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -42,13 +42,13 @@ ios:Page.UseSafeArea="true"
 										<StackLayout Grid.Column="1"
 													 Grid.Row="0"
 													 Orientation="Horizontal">
-											<Label Text="{Binding name}" />
-											<Label Text="{Binding plate}" />
+											<Label Text="{Binding car}" />
+											<Label Text="{Binding date}" />
 										</StackLayout>
 										<StackLayout Grid.Column="1"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-											<Label Text="{Binding v_color}" />
+											<Label Text="{Binding millage}" />
 										</StackLayout>
 									</Grid>
 								</ViewCell.View>
@@ -56,8 +56,8 @@ ios:Page.UseSafeArea="true"
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
-	</StackLayout>
-   <ContentView x:Name="ServiceView"
+			</StackLayout>
+			<ContentView x:Name="ServiceView"
 						 BackgroundColor="#C0808080"
 						 Padding="10, 0"
 						 IsVisible="false"
@@ -84,7 +84,7 @@ ios:Page.UseSafeArea="true"
 						<Entry Margin="20,20,20,10"
 							   x:Name="car"
 							   Placeholder="Car"></Entry>
-					
+
 
 						<Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"
@@ -92,7 +92,7 @@ ios:Page.UseSafeArea="true"
 					</StackLayout>
 				</StackLayout>
 			</ContentView>
-        	</AbsoluteLayout>
+		</AbsoluteLayout>
 	</ContentPage.Content>
-              
+
 </ContentPage>

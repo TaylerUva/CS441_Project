@@ -30,7 +30,7 @@ namespace CarTracker
 
         private void ConfirmNewName(object sender, System.EventArgs e)
         {
-            Service newService = new Service(plate.Text, make.Text, model.Text, Models.Color.Gray, vin.Text, name.Text);
+            Service newService = new Service(date.Text, Convert.ToInt32(millage.Text), location.Text, description.Text, car.Text);
             Services.Add(newService);
             ServiceView.IsVisible = false;
             testLabel.Text = "Total Service: " + Services.Count.ToString();
@@ -39,12 +39,11 @@ namespace CarTracker
 
         private void ClearEntryFields()
         {
-            plate.Text = null;
-            make.Text = null;
-            model.Text = null;
-            carColor.Text = null;
-            vin.Text = null;
-            name.Text = null;
+            date.Text = null;
+            millage.Text = null;
+            location.Text = null;
+            description.Text = null;
+            car.Text = null;
         }
 
         private void OnSortClicked(object sender, System.EventArgs e)

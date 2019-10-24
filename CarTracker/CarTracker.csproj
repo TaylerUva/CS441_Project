@@ -20,4 +20,8 @@
   <ItemGroup>
     <None Remove="Models\EmptyTextFile.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="LastService.xml" />
+    <EmbeddedResource Remove="LastService.xaml" />
+  </ItemGroup>
 </Project>

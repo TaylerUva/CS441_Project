@@ -61,11 +61,7 @@ namespace CarTracker {
             name.Text = null;
         }
 
-        private void OnSortClicked(object sender, System.EventArgs e) {
-            SortByOption();
-        }
-
-        private void SortByOption() {
+        private void SortByOption(object sender, System.EventArgs e) {
             List<Car> tempList = new List<Car>(Cars);
             int minIndex = 0;
 

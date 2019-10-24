@@ -4,8 +4,7 @@
         <AbsoluteLayout>
             <StackLayout>
                 <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="AddNewCarClicked" Text="Add New Car" />
-                <Picker x:Name="sortPicker" Title="Sort by" HorizontalOptions="Center" />
-                <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSortClicked" Text="Sort" />
+                <Picker x:Name="sortPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="SortByOption" />
                 <Label x:Name="testLabel" />
                 <ListView x:Name="yourCarsList">
                     <ListView.ItemTemplate>

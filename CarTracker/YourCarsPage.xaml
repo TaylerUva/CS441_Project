@@ -7,7 +7,7 @@
                 <Picker x:Name="sortPicker" Title="Sort by" HorizontalOptions="Center" />
                 <Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSortClicked" Text="Sort" />
                 <Label x:Name="testLabel" />
-                <ListView x:Name="yourCarsList">
+                <ListView x:Name="yourCarsList" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -15,21 +15,32 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                                            <Label Text="{Binding plate}" />
-                                            <Label Text="{Binding make}" />
-                                            <Label Text="{Binding model}" />
+                                        
+                                        <StackLayout Grid.Column ="1" Grid.Row="0" Orientation="Horizontal">
+                                              <Label Text="{Binding v_color}"/>
+                                              <Label Text="{Binding name}" />
+                                             
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                                            <Label Text="{Binding vin}" />
-                                            <Label Text="{Binding name}" />
+                                        <StackLayout Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
+                                                <Label Text="{Binding plate}" />                
+                                                 <Label Text="{Binding vin}" />
                                         </StackLayout>
+                                        <StackLayout Grid.Column="2" Grid.Row="2" Orientation="Horizontal" >                                                
+                                                <Label Text="{Binding make}" />                                      
+                                                <Label Text="{Binding model}" />                                               
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Grid.RowSpan="2" BackgroundColor="AliceBlue"/>
+
+
+
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>

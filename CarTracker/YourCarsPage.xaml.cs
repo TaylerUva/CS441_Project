@@ -18,27 +18,6 @@ namespace CarTracker {
             {"Sort by VIN", "vin"},
             {"Sort by nickname", "name"}
         };
-        // Dictionary to get Color from color name.
-        public static Dictionary<string, Color> nameToColor = new Dictionary<string, Color>()
-        {
-            { "Aqua", Color.Aqua },
-            { "Black", Color.Black },
-            { "Blue", Color.Blue },
-            { "Fucshia", Color.Fucshia },
-            { "Gray", Color.Gray },
-            { "Green", Color.Green },
-            { "Lime", Color.Lime },
-            { "Maroon", Color.Maroon },
-            { "Navy", Color.Navy },
-            { "Olive", Color.Olive },
-            { "Purple", Color.Purple },
-            { "Red", Color.Red },
-            { "Silver", Color.Silver },
-            { "Teal", Color.Teal },
-            { "White", Color.White },
-            { "Yellow", Color.Yellow }
-        };
-        public static List<string> PickerSortingOptions = new List<string>();
 
         public YourCarsPage() {
             InitializeComponent();
@@ -48,16 +27,13 @@ namespace CarTracker {
         }
 
         private void PopulateSortingPicker() {
-            foreach (KeyValuePair<string, string> item in SortingAttributes) {
-                PickerSortingOptions.Add(item.Key);
-            }
-
+            var PickerSortingOptions = new List<string>(SortingAttributes.Keys);
             sortPicker.ItemsSource = PickerSortingOptions;
             sortPicker.SelectedItem = PickerSortingOptions[0];
         }
 
         private void PopulateColorPicker() {
-            var colorList = new List<string>(nameToColor.Keys);
+            var colorList = new List<string>(Car.nameToColor.Keys);
             colorPicker.ItemsSource = colorList;
             colorPicker.SelectedItem = colorList[0];
         }
@@ -67,7 +43,7 @@ namespace CarTracker {
         }
 
         private void ConfirmNewCar(object sender, System.EventArgs e) {
-            Car newCar = new Car(plate.Text, make.Text, model.Text, nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
+            Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
             Cars.Add(newCar);
             popupLoginView.IsVisible = false;
             testLabel.Text = "Total Cars: " + Cars.Count.ToString();

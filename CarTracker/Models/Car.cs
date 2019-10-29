@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace CarTracker.Models {
     public enum Color {
         //TODO: Add more colors
@@ -19,6 +21,8 @@ namespace CarTracker.Models {
         White,
         Yellow,
     };
+
+
 
 
     public class Car {
@@ -44,25 +48,44 @@ namespace CarTracker.Models {
             name = newNickname;
         }
 
-        public string GetAttribute(string attribute)
-        {
-            switch (attribute)
-            {
-                case "plate":
-                    return plate;
-                case "make":
-                    return make;
-                case "model":
-                    return model;
-                case "vin":
-                    return vin;
-                case "name":
-                    return name;
-                default: 
-                    return null;
+        public string GetAttribute(string attribute) {
+            switch (attribute) {
+            case "plate":
+                return plate;
+            case "make":
+                return make;
+            case "model":
+                return model;
+            case "vin":
+                return vin;
+            case "name":
+                return name;
+            default:
+                return null;
             }
         }
+
+        // Dictionary to get Color from color name.
+        public static Dictionary<string, Color> nameToColor = new Dictionary<string, Color>()
+        {
+            { "Aqua", Color.Aqua },
+            { "Black", Color.Black },
+            { "Blue", Color.Blue },
+            { "Fucshia", Color.Fucshia },
+            { "Gray", Color.Gray },
+            { "Green", Color.Green },
+            { "Lime", Color.Lime },
+            { "Maroon", Color.Maroon },
+            { "Navy", Color.Navy },
+            { "Olive", Color.Olive },
+            { "Purple", Color.Purple },
+            { "Red", Color.Red },
+            { "Silver", Color.Silver },
+            { "Teal", Color.Teal },
+            { "White", Color.White },
+            { "Yellow", Color.Yellow }
+        };
     }
 
-   
+
 }

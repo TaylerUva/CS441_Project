@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using CarTracker.Models;
 using Xamarin.Forms;
 using System.Reflection;
+using Color = CarTracker.Models.Color;
 //using CustomCodeAttributes;
 
 namespace CarTracker {
@@ -17,11 +18,32 @@ namespace CarTracker {
             {"Sort by VIN", "vin"},
             {"Sort by nickname", "name"}
         };
+        // Dictionary to get Color from color name.
+        public static Dictionary<string, Color> nameToColor = new Dictionary<string, Color>()
+        {
+            { "Aqua", Color.Aqua },
+            { "Black", Color.Black },
+            { "Blue", Color.Blue },
+            { "Fucshia", Color.Fucshia },
+            { "Gray", Color.Gray },
+            { "Green", Color.Green },
+            { "Lime", Color.Lime },
+            { "Maroon", Color.Maroon },
+            { "Navy", Color.Navy },
+            { "Olive", Color.Olive },
+            { "Purple", Color.Purple },
+            { "Red", Color.Red },
+            { "Silver", Color.Silver },
+            { "Teal", Color.Teal },
+            { "White", Color.White },
+            { "Yellow", Color.Yellow }
+        };
         public static List<string> PickerSortingOptions = new List<string>();
 
         public YourCarsPage() {
             InitializeComponent();
             PopulateSortingPicker();
+            PopulateColorPicker();
             yourCarsList.ItemsSource = Cars;
         }
 
@@ -34,6 +56,13 @@ namespace CarTracker {
 
             sortPicker.ItemsSource = PickerSortingOptions;
             sortPicker.SelectedItem = PickerSortingOptions[0];
+        }
+
+        private void PopulateColorPicker()
+        {
+            var colorList = new List<string>(nameToColor.Keys);
+            colorPicker.ItemsSource = colorList;
+            colorPicker.SelectedItem = colorList[0];
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e) {
@@ -56,7 +85,6 @@ namespace CarTracker {
             plate.Text = null;
             make.Text = null;
             model.Text = null;
-            carColor.Text = null;
             vin.Text = null;
             name.Text = null;
         }

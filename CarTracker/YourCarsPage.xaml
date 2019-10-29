@@ -42,7 +42,8 @@
                         <Entry Margin="20,20,20,10" x:Name="plate" Placeholder="License Plate"></Entry>
                         <Entry Margin="20,0,20,0" x:Name="make" Placeholder="Make"></Entry>
                         <Entry Margin="20,20,20,10" x:Name="model" Placeholder="Model"></Entry>
-                        <Entry Margin="20,0,20,0" x:Name="carColor" Placeholder="Color"></Entry>
+                        <Picker Margin="20,0,20,0" x:Name="colorPicker" Title="Color"/>
+
                         <Entry Margin="20,20,20,10" x:Name="vin" Placeholder="VIM"></Entry>
                         <Entry Margin="20,0,20,0" x:Name="name" Placeholder="Name"></Entry>
                         <!--

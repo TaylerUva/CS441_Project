@@ -5,6 +5,19 @@ namespace CarTracker.Models {
         Black,
         Blue,
         Gray,
+        Aqua,
+        Fucshia,
+        Green,
+        Lime,
+        Maroon,
+        Navy,
+        Olive,
+        Purple,
+        Red,
+        Silver,
+        Teal,
+        White,
+        Yellow,
     };
 
 

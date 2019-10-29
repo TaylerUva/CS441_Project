@@ -47,10 +47,8 @@ namespace CarTracker {
             yourCarsList.ItemsSource = Cars;
         }
 
-        private void PopulateSortingPicker()
-        {
-            foreach (KeyValuePair<string, string> item in SortingAttributes)
-            {
+        private void PopulateSortingPicker() {
+            foreach (KeyValuePair<string, string> item in SortingAttributes) {
                 PickerSortingOptions.Add(item.Key);
             }
 
@@ -58,8 +56,7 @@ namespace CarTracker {
             sortPicker.SelectedItem = PickerSortingOptions[0];
         }
 
-        private void PopulateColorPicker()
-        {
+        private void PopulateColorPicker() {
             var colorList = new List<string>(nameToColor.Keys);
             colorPicker.ItemsSource = colorList;
             colorPicker.SelectedItem = colorList[0];
@@ -70,14 +67,13 @@ namespace CarTracker {
         }
 
         private void ConfirmNewCar(object sender, System.EventArgs e) {
-            Car newCar = new Car(plate.Text, make.Text, model.Text, Models.Color.Gray, vin.Text, name.Text);
+            Car newCar = new Car(plate.Text, make.Text, model.Text, nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
             Cars.Add(newCar);
             popupLoginView.IsVisible = false;
             testLabel.Text = "Total Cars: " + Cars.Count.ToString();
             ClearEntryFields();
         }
-        private void CancelNewCar(object sender, System.EventArgs e)
-        {
+        private void CancelNewCar(object sender, System.EventArgs e) {
             popupLoginView.IsVisible = false;
         }
 
@@ -93,13 +89,10 @@ namespace CarTracker {
             List<Car> tempList = new List<Car>(Cars);
             int minIndex = 0;
 
-            for (int i = 0; i < tempList.Count; i++)
-            {
+            for (int i = 0; i < tempList.Count; i++) {
                 minIndex = i;
-                for (int unsort = i + 1; unsort < tempList.Count; unsort++)
-                {
-                    if (string.Compare(tempList[unsort].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()]), tempList[minIndex].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()])) == -1)
-                    {
+                for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
+                    if (string.Compare(tempList[unsort].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()]), tempList[minIndex].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()])) == -1) {
                         minIndex = unsort;
                     }
                 }
@@ -111,6 +104,6 @@ namespace CarTracker {
             yourCarsList.ItemsSource = Cars;
 
         }
-        
+
     }
 }

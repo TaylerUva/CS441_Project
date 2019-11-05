@@ -74,7 +74,12 @@
 							   Placeholder="Date"></Entry>
 						<Entry Margin="20,0,20,0"
 							   x:Name="millage"
-							   Placeholder="Millage"></Entry>
+							   Placeholder="Millage"
+                               TextChanged="TextChange"
+                               Keyboard="Numeric"
+
+
+             ></Entry>
 						<Entry Margin="20,20,20,10"
 							   x:Name="location"
 							   Placeholder="Location"></Entry>

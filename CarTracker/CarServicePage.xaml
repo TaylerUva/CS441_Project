@@ -107,6 +107,9 @@
 						<Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"
 								Text="Add Service" />
+                        <Button Clicked="CancelService"
+                                Margin="20,0,20,0"
+                                Text="Cancel"/>
 					</StackLayout>
 				</StackLayout>
 			</ContentView>

@@ -51,6 +51,16 @@ namespace CarTracker
 
         }
 
+       
+
+        private void CancelService(object sender, System.EventArgs e)
+        {
+            ClearEntryFields();
+            ServiceView.IsVisible = false;
+
+        }
+
+
         private void TextChange(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;

@@ -68,7 +68,7 @@
 							 HorizontalOptions="Center">
 					<StackLayout Orientation="Vertical"
 								 HeightRequest="500"
-								 WidthRequest="900"
+								 WidthRequest="300"
 								 BackgroundColor="White">
 						<Entry Margin="20,20,20,10"
 							   x:Name="date"

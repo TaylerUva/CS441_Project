@@ -38,9 +38,6 @@
                                                 <Label Text="{Binding model}" />                                               
                                         </StackLayout>
                                         <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Grid.RowSpan="2" BackgroundColor="AliceBlue"/>
-
-
-
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>

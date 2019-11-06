@@ -24,7 +24,8 @@
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
 						Text="Sort" />
-				<Label x:Name="testLabel" />
+                <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
+                <Label x:Name="testLabel" />
 				<ListView x:Name="yourCarsList">
 					<ListView.ItemTemplate>
 						<DataTemplate>
@@ -67,7 +68,7 @@
 							 HorizontalOptions="Center">
 					<StackLayout Orientation="Vertical"
 								 HeightRequest="500"
-								 WidthRequest="300"
+								 WidthRequest="900"
 								 BackgroundColor="White">
 						<Entry Margin="20,20,20,10"
 							   x:Name="date"

@@ -16,11 +16,27 @@ namespace CarTracker
     public partial class CarServicePage : ContentPage
     {
         public static ObservableCollection<Service> Services = new ObservableCollection<Service>();
+        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() {
+            {"Sort by data", "data"},
+            {"Sort by millage", "millage"},
+            {"Sort by location", "location"},
+            {"Sort by description", "description"},
+            {"Sort by car", "car"}
+        };
+
 
         public CarServicePage()
         {
             InitializeComponent();
+            PopulateStatementPicker();
             yourCarsList.ItemsSource = Services;
+        }
+
+        private void PopulateStatementPicker()
+        {
+            var PickerStatementOption = new List<string>(SortingStatement.Keys);
+            statementPicker.ItemsSource = PickerStatementOption;
+            statementPicker.SelectedItem = PickerStatementOption[0];
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e)
@@ -30,7 +46,7 @@ namespace CarTracker
 
         private void ConfirmNewName(object sender, System.EventArgs e)
         {
-            Service newService = new Service(date.Text, Convert.ToInt32(millage.Text), location.Text, description.Text, car.Text);
+            Service newService = new Service(date.Text, millage.Text, location.Text, description.Text, car.Text);
             Services.Add(newService);
             ServiceView.IsVisible = false;
             testLabel.Text = "Total Service: " + Services.Count.ToString();
@@ -48,7 +64,26 @@ namespace CarTracker
 
         private void OnSortClicked(object sender, System.EventArgs e)
         {
-          
+            List<Service> tempList = new List<Service>(Services);
+            int minIndex = 0;
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                minIndex = i;
+                for (int unsort = i + 1; unsort < tempList.Count; unsort++)
+                {
+                    if (string.Compare(tempList[unsort].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()]), tempList[minIndex].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()])) == -1)
+                    {
+                        minIndex = unsort;
+                    }
+                }
+                Service tempCar = tempList[minIndex];
+                tempList[minIndex] = tempList[i];
+                tempList[i] = tempCar;
+            }
+            Services = new ObservableCollection<Service>(tempList);
+            yourCarsList.ItemsSource = Services;
+
         }
 
     }

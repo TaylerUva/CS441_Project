@@ -48,7 +48,57 @@ namespace CarTracker
 
         private void OnSortClicked(object sender, System.EventArgs e)
         {
-          
+
+        }
+
+       
+
+        private void CancelService(object sender, System.EventArgs e)
+        {
+            ClearEntryFields();
+            ServiceView.IsVisible = false;
+
+        }
+
+
+        private void TextChange(object sender, TextChangedEventArgs e)
+        {
+            var entry = (Entry)sender;
+            try
+            {
+
+                if (entry.Text.Length > 7)
+                {
+                    string entryText = entry.Text;
+
+                    entry.TextChanged -= TextChange;
+
+                    entry.Text = e.OldTextValue;
+                    entry.TextChanged += TextChange;
+                }
+                else if (!entry.Text.All(char.IsDigit))
+                {
+                    string entryText = entry.Text;
+
+                    entry.TextChanged -= TextChange;
+
+                    entry.Text = e.OldTextValue;
+                    entry.TextChanged += TextChange;
+                    return;
+                }
+                string strName = entry.Text;
+
+                if (strName.Contains(".") || strName.Contains("-"))
+                {
+                    strName = strName.Replace(".", "").Replace("-", "");
+                    entry.Text = strName;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception caught: {0}", ex);
+            }
         }
 
     }

@@ -46,7 +46,6 @@ namespace CarTracker {
             Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
             Cars.Add(newCar);
             popupLoginView.IsVisible = false;
-            testLabel.Text = "Total Cars: " + Cars.Count.ToString();
             ClearEntryFields();
         }
         private void CancelNewCar(object sender, System.EventArgs e) {

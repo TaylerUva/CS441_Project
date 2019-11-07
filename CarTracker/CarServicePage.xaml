@@ -25,7 +25,7 @@
 						Clicked="OnSortClicked"
 						Text="Sort" />
                 <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
-				<ListView x:Name="yourCarsList" HasUnevenRows="True">
+				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>

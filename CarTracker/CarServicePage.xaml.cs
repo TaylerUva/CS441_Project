@@ -48,6 +48,11 @@ namespace CarTracker {
             car.Text = null;
         }
 
+        async void OnCellTapped (object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new ServiceDescription());
+        }
+
         private void OnSortClicked(object sender, System.EventArgs e) {
             List<Service> tempList = new List<Service>(Services);
             int minIndex = 0;

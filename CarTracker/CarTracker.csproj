@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

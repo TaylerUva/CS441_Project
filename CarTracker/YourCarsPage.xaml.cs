@@ -26,6 +26,19 @@ namespace CarTracker {
             yourCarsList.ItemsSource = Cars;
         }
 
+        //*****For populating from database*****
+        //protected override async void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    yourCarsList.ItemsSource = await App.CarDatabase.GetCarAsync();
+        //}
+
+        //**********************
+
+        private void PopulateYourCarsList() {
+
+        }
+
         private void PopulateSortingPicker() {
             var PickerSortingOptions = new List<string>(SortingAttributes.Keys);
             sortPicker.ItemsSource = PickerSortingOptions;
@@ -41,7 +54,7 @@ namespace CarTracker {
         private void AddNewCarClicked(object sender, System.EventArgs e) {
             popupLoginView.IsVisible = true;
         }
-
+        
         private void ConfirmNewCar(object sender, System.EventArgs e) {
             Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
             Cars.Add(newCar);
@@ -49,6 +62,35 @@ namespace CarTracker {
             testLabel.Text = "Total Cars: " + Cars.Count.ToString();
             ClearEntryFields();
         }
+
+        //*******Storing to DB
+        /*
+        async void ConfirmNewCar(object sender, System.EventArgs e)
+        {
+            //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
+            //Cars.Add(newCar);
+            //popupLoginView.IsVisible = false;
+            //testLabel.Text = "Total Cars: " + Cars.Count.ToString();
+            //ClearEntryFields();
+            if (!string.IsNullOrWhiteSpace(plate.Text))
+            {
+                await App.CarDatabase.SaveCarAsync(new StoredCarsModel
+                {
+                    Plate = plate.Text,
+                    Make = make.Text,
+                    Model = model.Text,
+                    V_Color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
+                    Vin = vin.Text,
+                    Name = name.Text
+                });
+            }
+            popupLoginView.IsVisible = false;
+            ClearEntryFields();
+            yourCarsList.ItemsSource = await App.CarDatabase.GetCarAsync();
+        }*/
+        //************
+
+
         private void CancelNewCar(object sender, System.EventArgs e) {
             popupLoginView.IsVisible = false;
         }

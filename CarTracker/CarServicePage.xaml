@@ -24,7 +24,7 @@
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
 						Text="Sort" />
-				<Label x:Name="testLabel" />
+                <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
 				<ListView x:Name="yourCarsList" HasUnevenRows="True">
 					<ListView.ItemTemplate>
 						<DataTemplate>

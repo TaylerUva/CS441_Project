@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace CarTracker.Models {
     public enum Color {
@@ -26,15 +27,20 @@ namespace CarTracker.Models {
 
 
     public class Car {
-        public string plate { get; }
-        public string make { get; }
-        public string model { get; }
-        public Color v_color { get; }
-        public string vin { get; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string plate { get; set; }
+        public string make { get; set; }
+        public string model { get; set; }
+        public Color v_color { get; set; }
+        public string vin { get; set; }
         public string name { get; set; }
         //TODO: Add photo
         // Test
 
+        public Car() { }
+
+        /*
         public Car(string licensePlateNumber, string vehicleMake, string vehicleModel, Color vehicleColor, string vehicleVin, string carNickname) {
             plate = licensePlateNumber;
             make = vehicleMake;
@@ -43,7 +49,7 @@ namespace CarTracker.Models {
             vin = vehicleVin;
             name = carNickname;
         }
-
+        */
         public void ChangeNickName(string newNickname) {
             name = newNickname;
         }

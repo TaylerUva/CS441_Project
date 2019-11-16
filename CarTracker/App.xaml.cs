@@ -6,6 +6,10 @@ using CarTracker.Models;
 
 namespace CarTracker {
     public partial class App : Application {
+
+        public static string FilePath;//From video tutorial
+
+        //**************First thing
         private static CarDatabase carDatabase;
 
         public static CarDatabase CarDatabase
@@ -22,6 +26,7 @@ namespace CarTracker {
                 return carDatabase;
             }
         }
+        //*********************
 
         public App()
         {
@@ -29,6 +34,16 @@ namespace CarTracker {
 
             MainPage = new NavigationPage(new MainPage());
 
+        }
+
+        //From video tutorial
+        public App(string filePath)
+        {
+            InitializeComponent();
+
+            MainPage = new NavigationPage(new MainPage());
+
+            FilePath = filePath;
         }
 
         protected override void OnStart()

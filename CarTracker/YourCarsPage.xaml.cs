@@ -5,6 +5,9 @@ using CarTracker.Models;
 using Xamarin.Forms;
 using System.Reflection;
 using Color = CarTracker.Models.Color;
+
+using SQLite;
+using System.Linq;
 //using CustomCodeAttributes;
 
 namespace CarTracker {
@@ -23,9 +26,20 @@ namespace CarTracker {
             InitializeComponent();
             PopulateSortingPicker();
             PopulateColorPicker();
-            yourCarsList.ItemsSource = Cars;
+            //yourCarsList.ItemsSource = Cars;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Car>();
+                var carsList = conn.Table<Car>().ToList();
+
+                yourCarsList.ItemsSource = carsList;
+            }
+        }
         //*****For populating from database*****
         //protected override async void OnAppearing()
         //{
@@ -56,10 +70,36 @@ namespace CarTracker {
         }
         
         private void ConfirmNewCar(object sender, System.EventArgs e) {
-            Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
-            Cars.Add(newCar);
+
+            Car car = new Car()
+            {
+                plate = plateEntry.Text,
+                make = makeEntry.Text,
+                model = modelEntry.Text,
+                v_color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
+                vin = vinEntry.Text,
+                name = nameEntry.Text
+            };
+
+            using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Car>();
+                conn.Insert(car);
+                var carsList = conn.Table<Car>().ToList();
+
+                yourCarsList.ItemsSource = carsList;
+            }
+
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    conn.CreateTable<Car>();
+                
+            //}
             popupLoginView.IsVisible = false;
-            ClearEntryFields();
+            //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
+            //Cars.Add(newCar);
+            //popupLoginView.IsVisible = false;
+            //ClearEntryFields();
         }
 
         //*******Storing to DB
@@ -95,11 +135,11 @@ namespace CarTracker {
         }
 
         private void ClearEntryFields() {
-            plate.Text = null;
-            make.Text = null;
-            model.Text = null;
-            vin.Text = null;
-            name.Text = null;
+            plateEntry.Text = null;
+            makeEntry.Text = null;
+            modelEntry.Text = null;
+            vinEntry.Text = null;
+            nameEntry.Text = null;
         }
 
         private void SortByOption(object sender, System.EventArgs e) {

@@ -30,7 +30,7 @@ namespace CarTracker
 
         private void ConfirmNewName(object sender, System.EventArgs e)
         {
-            Service newService = new Service(date.Text, Convert.ToInt32(millage.Text), location.Text, description.Text, car.Text);
+            Service newService = new Service(Convert.ToInt32(millage.Text), location.Text, description.Text, car.Text);
             Services.Add(newService);
             ServiceView.IsVisible = false;
             testLabel.Text = "Total Service: " + Services.Count.ToString();
@@ -39,7 +39,7 @@ namespace CarTracker
 
         private void ClearEntryFields()
         {
-            date.Text = null;
+            
             millage.Text = null;
             location.Text = null;
             description.Text = null;
@@ -50,6 +50,13 @@ namespace CarTracker
         {
 
         }
+
+        DatePicker datePicker = new DatePicker
+        {
+            MinimumDate = new DateTime(2018, 1, 1),
+            MaximumDate = new DateTime(2018, 12, 31),
+            Date = new DateTime(2018, 6, 21)
+        };
 
         private void TextChange(object sender, TextChangedEventArgs e)
         {

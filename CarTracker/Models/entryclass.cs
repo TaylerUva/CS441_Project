@@ -15,9 +15,9 @@ public enum CarService {
         public string description { get; }
         public string car { get; }
 
-        public Service(string entryDate, int entryMillage, string entryLocation, string entryDescriprion, string entryCar)
+        public Service( int entryMillage, string entryLocation, string entryDescriprion, string entryCar)
         {
-            date = entryDate;
+          
             millage = entryMillage;
             location = entryLocation;
             description = entryDescriprion;

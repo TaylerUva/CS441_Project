@@ -69,9 +69,13 @@
 								 HeightRequest="500"
 								 WidthRequest="300"
 								 BackgroundColor="White">
-						<Entry Margin="20,20,20,10"
-							   x:Name="date"
-							   Placeholder="Date"></Entry>
+                        <DatePicker
+                            Margin="20,20,20,10"
+                            MinimumDate="01/01/2018"
+                            MaximumDate="12/31/2018"
+                            Date="06/21/2018" />
+
+                
 						<Entry Margin="20,0,20,0"
 							   x:Name="millage"
 							   Placeholder="Millage"

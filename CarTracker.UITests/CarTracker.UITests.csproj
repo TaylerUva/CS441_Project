@@ -30,6 +30,9 @@
   <ItemGroup>
     <PackageReference Include="NUnit" Version="2.6.4" />
     <PackageReference Include="Xamarin.UITest" Version="2.2.7" />
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.6.292</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarTracker.iOS\CarTracker.iOS.csproj">

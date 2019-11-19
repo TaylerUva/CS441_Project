@@ -4,10 +4,11 @@ using System.Collections.ObjectModel;
 using CarTracker.Models;
 using Xamarin.Forms;
 using System.Reflection;
-using Color = CarTracker.Models.Color;
-
+using System.Globalization;
 using SQLite;
 using System.Linq;
+using Color = Xamarin.Forms.Color;
+
 //using CustomCodeAttributes;
 
 namespace CarTracker {
@@ -162,5 +163,120 @@ namespace CarTracker {
 
         }
 
+    }
+
+
+    public class PickerBehavior : Behavior<Picker>
+    {
+        static readonly BindableProperty cellcolor = BindableProperty.Create(nameof(black), typeof(string[]), typeof(PickerBehavior));
+
+        public string[] black = { "black" };
+        public string[] blue = { "blue" };
+        public string[] gray = { "gray" };
+        public string[] aqua = { "aqua" };
+        public string[] fucshia = { "fucshia" };
+        public string[] green = { "green" };
+        public string[] lime = { "lime" };
+        public string[] maroon = { "maroon" };
+        public string[] olive = { "olive" };
+        public string[] purple = { "purple" };
+        public string[] red = { "red" };
+        public string[] silver = { "silver" };
+        public string[] teal = { "teal" };
+        public string[] white = { "white" };
+        public string[] yellow = { "yellow" };
+
+        protected override void OnAttachedTo(Picker bindable)
+        {
+            bindable.SelectedIndexChanged += Bindable_SelectedIndexChanged;
+        }
+        protected override void OnDetachingFrom(Picker bindable)
+        {
+            bindable.SelectedIndexChanged -= Bindable_SelectedIndexChanged;
+        }
+
+        protected void Bindable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (black.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Black;
+                ((Picker)sender).TextColor = Color.White;
+            }
+            else if (blue.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Blue;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (gray.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Gray;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (aqua.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Aqua;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (fucshia.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Fuchsia;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (green.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Green;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (lime.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Lime;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (maroon.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Maroon;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (olive.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Olive;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (purple.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Purple;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (red.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Red;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (silver.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Silver;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (teal.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Teal;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (white.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.White;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else if (yellow.Contains(((Picker)sender).SelectedItem.ToString().ToLower()))
+            {
+                ((Picker)sender).BackgroundColor = Color.Yellow;
+                ((Picker)sender).TextColor = Color.Black;
+            }
+            else
+            {
+                ((Picker)sender).BackgroundColor = Color.Default;
+                ((Picker)sender).TextColor = Color.Default;
+            }
+        }
     }
 }

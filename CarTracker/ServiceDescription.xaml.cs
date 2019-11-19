@@ -8,7 +8,7 @@ namespace CarTracker
 {
     public partial class ServiceDescription : ContentPage
     {
-        public ServiceDescription(Service car )
+        public ServiceDescription(Service car)
         {
             InitializeComponent();
             BindingContext = car;

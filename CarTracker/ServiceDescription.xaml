@@ -2,9 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CarTracker.ServiceDescription">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Description" />
+
+            <Label Text="Date" TextDecorations="Underline" />
+            <Label Text= "{Binding date}" />
+
+            <Label Text="Mileage" TextDecorations="Underline"/>
+            <Label Text= "{Binding millage}" />
+
+            <Label Text="Location" TextDecorations="Underline"/>
+            <Label Text= "{Binding location}" />
+
+            <Label Text="Description" TextDecorations="Underline"/>
             <Label Text= "{Binding description}" />
-           
+
+            <Label Text="Car" TextDecorations="Underline"/>
+            <Label Text= "{Binding car}" />
 
         </StackLayout>
     </ContentPage.Content>

@@ -34,22 +34,21 @@ namespace CarTracker {
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
-            Service newService = new Service(date.Text, millage.Text, location.Text, description.Text, car.Text);
+            Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
             Services.Add(newService);
             ServiceView.IsVisible = false;
             ClearEntryFields();
         }
 
         private void ClearEntryFields() {
-            date.Text = null;
+            date.Date = DateTime.Now;
             millage.Text = null;
             location.Text = null;
             description.Text = null;
             car.Text = null;
         }
 
-        async void OnCellTapped (object sender, Xamarin.Forms.ItemTappedEventArgs e)
-        {
+        async void OnCellTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e) {
             await Navigation.PushAsync(new ServiceDescription());
         }
 

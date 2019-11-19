@@ -36,7 +36,6 @@
 										<StackLayout Grid.Column="1"
 													 Grid.Row="0"
 													 Orientation="Horizontal">
-											<Label Text="{Binding v_color}" />
 											<Label Text="{Binding name}" />
 
 										</StackLayout>
@@ -52,7 +51,11 @@
 											<Label Text="{Binding make}" />
 											<Label Text="{Binding model}" />
 										</StackLayout>
-										<StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Grid.RowSpan="2" BackgroundColor="{Binding v_color, StringFormat='{0}'}" />
+										<StackLayout Grid.Column="1"
+													 Grid.Row="1"
+													 Orientation="Vertical"
+													 Grid.RowSpan="2"
+													 BackgroundColor="{Binding v_color, StringFormat='{0}'}" />
 									</Grid>
 								</ViewCell.View>
 							</ViewCell>

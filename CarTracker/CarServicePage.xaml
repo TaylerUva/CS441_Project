@@ -10,7 +10,7 @@
 	<!--cartracker = class & carservicepage = page its going to-->
 	<ContentPage.Content>
 		<AbsoluteLayout>
-			<StackLayout>
+			<StackLayout BackgroundColor="#3d3e40">
 				<!-- Place new controls here -->
 				<Entry x:Name="slugName"
 					   HorizontalOptions="CenterAndExpand"
@@ -25,7 +25,8 @@
 						Clicked="OnSortClicked"
 						Text="Sort" />
                 <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
-				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped">
+				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped"
+              BackgroundColor="#3d3e40">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -42,26 +43,30 @@
 										<StackLayout Grid.Column="1"
 													 Grid.Row="0"
 													 Orientation="Horizontal">
-											<Label Text="{Binding car}" />
+											<Label Text="{Binding car}"
+                                                TextColor="White"/>
 											
 										</StackLayout>
 
 										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
 													 Orientation="Horizontal">										
-                                            <Label Text="{Binding date}" />                                
+                                            <Label Text="{Binding date}"
+                                                   TextColor="White"/>                                
 										</StackLayout>
                         
                                         <StackLayout Grid.Column="3"
 													 Grid.Row="1"
 													 Orientation="Horizontal">										                                           
-                                            <Label Text="{Binding millage}" />
+                                            <Label Text="{Binding millage}"
+                                                   TextColor="White"/>
 										</StackLayout>
 
                                         <StackLayout Grid.Column="2"
 													 Grid.Row="2"
 													 Orientation="Horizontal">										
-                                            <Label Text="{Binding location}" />
+                                            <Label Text="{Binding location}"
+                                                   TextColor="White"/>
 										</StackLayout>
 									</Grid>
 								</ViewCell.View>
@@ -81,7 +86,7 @@
 					<StackLayout Orientation="Vertical"
 								 HeightRequest="500"
 								 WidthRequest="300"
-								 BackgroundColor="White">
+								 BackgroundColor="Black">
 						<Entry Margin="20,20,20,10"
 							   x:Name="date"
 							   Placeholder="Date"></Entry>

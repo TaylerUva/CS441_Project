@@ -24,8 +24,8 @@
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
 						Text="Sort" />
-				<Label x:Name="testLabel" />
-				<ListView x:Name="yourCarsList">
+                <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
+				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -33,7 +33,7 @@
 									<Grid>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto" />
-											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="Auto" />
 										</Grid.ColumnDefinitions>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
@@ -43,12 +43,25 @@
 													 Grid.Row="0"
 													 Orientation="Horizontal">
 											<Label Text="{Binding car}" />
-											<Label Text="{Binding date}" />
+											
 										</StackLayout>
-										<StackLayout Grid.Column="1"
+
+										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
-													 Orientation="Horizontal">
-											<Label Text="{Binding millage}" />
+													 Orientation="Horizontal">										
+                                            <Label Text="{Binding date}" />                                
+										</StackLayout>
+                        
+                                        <StackLayout Grid.Column="3"
+													 Grid.Row="1"
+													 Orientation="Horizontal">										                                           
+                                            <Label Text="{Binding millage}" />
+										</StackLayout>
+
+                                        <StackLayout Grid.Column="2"
+													 Grid.Row="2"
+													 Orientation="Horizontal">										
+                                            <Label Text="{Binding location}" />
 										</StackLayout>
 									</Grid>
 								</ViewCell.View>
@@ -98,6 +111,9 @@
 						<Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"
 								Text="Add Service" />
+                        <Button Clicked="CancelService"
+                                Margin="20,0,20,0"
+                                Text="Cancel"/>
 					</StackLayout>
 				</StackLayout>
 			</ContentView>

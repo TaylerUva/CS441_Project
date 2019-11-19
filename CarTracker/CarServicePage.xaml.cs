@@ -50,7 +50,8 @@ namespace CarTracker {
 
         async void OnCellTapped (object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new ServiceDescription());
+            var content = e.Item as Service;
+            await Navigation.PushAsync(new ServiceDescription(content));
         }
 
         private void OnSortClicked(object sender, System.EventArgs e) {

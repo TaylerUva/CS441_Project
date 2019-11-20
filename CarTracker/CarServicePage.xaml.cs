@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -34,14 +34,14 @@ namespace CarTracker {
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
-            Service newService = new Service(date.Text, millage.Text, location.Text, description.Text, car.Text);
+            Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
             Services.Add(newService);
             ServiceView.IsVisible = false;
             ClearEntryFields();
         }
 
         private void ClearEntryFields() {
-            date.Text = null;
+            date.Date = DateTime.Now;
             millage.Text = null;
             location.Text = null;
             description.Text = null;
@@ -50,8 +50,10 @@ namespace CarTracker {
 
         async void OnCellTapped (object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new ServiceDescription());
+            var content = e.Item as Service;
+            await Navigation.PushAsync(new ServiceDescription(content));
         }
+
 
         private void OnSortClicked(object sender, System.EventArgs e) {
             List<Service> tempList = new List<Service>(Services);

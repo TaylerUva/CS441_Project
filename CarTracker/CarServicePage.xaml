@@ -45,26 +45,26 @@
 													 Orientation="Horizontal">
 											<Label Text="{Binding car}"
                                                 TextColor="White"/>
-											
+
 										</StackLayout>
 
 										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
-													 Orientation="Horizontal">										
+													 Orientation="Horizontal">
                                             <Label Text="{Binding date}"
-                                                   TextColor="White"/>                                
+                                                   TextColor="White"/>
 										</StackLayout>
-                        
+
                                         <StackLayout Grid.Column="3"
 													 Grid.Row="1"
-													 Orientation="Horizontal">										                                           
+													 Orientation="Horizontal">
                                             <Label Text="{Binding millage}"
                                                    TextColor="White"/>
 										</StackLayout>
 
                                         <StackLayout Grid.Column="2"
 													 Grid.Row="2"
-													 Orientation="Horizontal">										
+													 Orientation="Horizontal">
                                             <Label Text="{Binding location}"
                                                    TextColor="White"/>
 										</StackLayout>
@@ -112,9 +112,9 @@
 						<Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"
 								Text="Add Service" />
-                        <Button Clicked="CancelService"
-                                Margin="20,0,20,0"
-                                Text="Cancel"/>
+						<Button Clicked="CancelService"
+								Margin="20,0,20,0"
+								Text="Cancel" />
 					</StackLayout>
 				</StackLayout>
 			</ContentView>

@@ -135,4 +135,7 @@
       <Name>CarTracker</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\carService.png" />
+  </ItemGroup>
 </Project>

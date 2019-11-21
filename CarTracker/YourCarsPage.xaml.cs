@@ -69,34 +69,38 @@ namespace CarTracker {
         }
 
         private void ConfirmNewCar(object sender, System.EventArgs e) {
+            if (plateEntry.Text == null || makeEntry.Text == null || modelEntry.Text == null || vinEntry.Text == null || nameEntry.Text == null) {
+                DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
+            } else {
 
-            Car car = new Car() {
-                plate = plateEntry.Text,
-                make = makeEntry.Text,
-                model = modelEntry.Text,
-                v_color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
-                vin = vinEntry.Text,
-                name = nameEntry.Text
-            };
+                Car car = new Car() {
+                    plate = plateEntry.Text,
+                    make = makeEntry.Text,
+                    model = modelEntry.Text,
+                    v_color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
+                    vin = vinEntry.Text,
+                    name = nameEntry.Text
+                };
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                conn.CreateTable<Car>();
-                conn.Insert(car);
-                var carsList = conn.Table<Car>().ToList();
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
+                    conn.CreateTable<Car>();
+                    conn.Insert(car);
+                    var carsList = conn.Table<Car>().ToList();
 
-                yourCarsList.ItemsSource = carsList;
+                    yourCarsList.ItemsSource = carsList;
+                }
+
+                //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                //{
+                //    conn.CreateTable<Car>();
+
+                //}
+                popupLoginView.IsVisible = false;
+                //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
+                //Cars.Add(newCar);
+                //popupLoginView.IsVisible = false;
+                //ClearEntryFields();
             }
-
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    conn.CreateTable<Car>();
-
-            //}
-            popupLoginView.IsVisible = false;
-            //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
-            //Cars.Add(newCar);
-            //popupLoginView.IsVisible = false;
-            //ClearEntryFields();
         }
 
         //*******Storing to DB

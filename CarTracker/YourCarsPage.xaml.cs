@@ -27,7 +27,7 @@ namespace CarTracker {
             InitializeComponent();
             PopulateSortingPicker();
             PopulateColorPicker();
-            
+
         }
 
         public void OnDelete(object sender, EventArgs e) {
@@ -37,8 +37,7 @@ namespace CarTracker {
 
         protected override void OnAppearing() {
             //base.OnAppearing();
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
 
                 //conn.CreateTable<Car>();
                 var carsList = conn.Table<Car>().ToList();
@@ -85,6 +84,8 @@ namespace CarTracker {
                     yourCarsList.ItemsSource = carsList;
                 }
 
+                SortByOption(null, null);
+
                 //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 //{
                 //    conn.CreateTable<Car>();
@@ -95,11 +96,11 @@ namespace CarTracker {
                 //Cars.Add(newCar);
                 //popupLoginView.IsVisible = false;
                 //ClearEntryFields();
+
+                ClearEntryFields();
+                popupLoginView.IsVisible = false;
             }
 
-            ClearEntryFields();
-            popupLoginView.IsVisible = false;
-            
         }
 
         //*******Storing to DB
@@ -149,8 +150,7 @@ namespace CarTracker {
 
             int minIndex = 0;
             string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 //conn.CreateTable<Car>();
                 //conn.Insert(car);
                 var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);

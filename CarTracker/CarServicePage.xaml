@@ -24,9 +24,14 @@
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
 						Text="Sort" />
-                <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
-				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped"
-              BackgroundColor="#3d3e40">
+				<Picker x:Name="statementPicker"
+						Title="Sort by"
+						HorizontalOptions="Center"
+						SelectedIndexChanged="OnSortClicked" />
+				<ListView x:Name="yourCarsList"
+						  HasUnevenRows="True"
+						  ItemTapped="OnCellTapped"
+						  BackgroundColor="#3d3e40">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -44,29 +49,29 @@
 													 Grid.Row="0"
 													 Orientation="Horizontal">
 											<Label Text="{Binding car}"
-                                                TextColor="White"/>
+												   TextColor="White" />
 
 										</StackLayout>
 
 										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding date}"
-                                                   TextColor="White"/>
+											<Label Text="{Binding date}"
+												   TextColor="White" />
 										</StackLayout>
 
-                                        <StackLayout Grid.Column="3"
+										<StackLayout Grid.Column="3"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding millage}"
-                                                   TextColor="White"/>
+											<Label Text="{Binding millage}"
+												   TextColor="White" />
 										</StackLayout>
 
-                                        <StackLayout Grid.Column="2"
+										<StackLayout Grid.Column="2"
 													 Grid.Row="2"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding location}"
-                                                   TextColor="White"/>
+											<Label Text="{Binding location}"
+												   TextColor="White" />
 										</StackLayout>
 									</Grid>
 								</ViewCell.View>
@@ -87,17 +92,13 @@
 								 HeightRequest="500"
 								 WidthRequest="300"
 								 BackgroundColor="Black">
-						<Entry Margin="20,20,20,10"
-							   x:Name="date"
-							   Placeholder="Date"></Entry>
+						<DatePicker x:Name="date"
+									Margin="20,20,20,10" />
 						<Entry Margin="20,0,20,0"
 							   x:Name="millage"
 							   Placeholder="Millage"
-                               TextChanged="TextChange"
-                               Keyboard="Numeric"
-
-
-             ></Entry>
+							   TextChanged="TextChange"
+							   Keyboard="Numeric"></Entry>
 						<Entry Margin="20,20,20,10"
 							   x:Name="location"
 							   Placeholder="Location"></Entry>

@@ -30,6 +30,11 @@ namespace CarTracker {
             //yourCarsList.ItemsSource = Cars;
         }
 
+        public void OnDelete(object sender, EventArgs e) {
+            var mi = ((MenuItem)sender);
+            DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+        }
+
         protected override void OnAppearing() {
             base.OnAppearing();
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {

@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using System.IO;
 using Xamarin.Forms.Xaml;
 using CarTracker.Models;
+using SQLite;
 
 namespace CarTracker {
     public partial class App : Application {
@@ -49,6 +50,10 @@ namespace CarTracker {
         protected override void OnStart()
         {
             // Handle when your app starts
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Car>();
+            }
         }
 
         protected override void OnSleep()

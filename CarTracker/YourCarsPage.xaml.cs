@@ -27,29 +27,19 @@ namespace CarTracker {
             InitializeComponent();
             PopulateSortingPicker();
             PopulateColorPicker();
-            //yourCarsList.ItemsSource = Cars;
+            
         }
 
         protected override void OnAppearing() {
-            base.OnAppearing();
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                conn.CreateTable<Car>();
+            //base.OnAppearing();
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+
+                //conn.CreateTable<Car>();
                 var carsList = conn.Table<Car>().ToList();
 
                 yourCarsList.ItemsSource = carsList;
             }
-        }
-        //*****For populating from database*****
-        //protected override async void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    yourCarsList.ItemsSource = await App.CarDatabase.GetCarAsync();
-        //}
-
-        //**********************
-
-        private void PopulateYourCarsList() {
-
         }
 
         private void PopulateSortingPicker() {
@@ -87,16 +77,9 @@ namespace CarTracker {
                 yourCarsList.ItemsSource = carsList;
             }
 
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    conn.CreateTable<Car>();
-
-            //}
+            ClearEntryFields();
             popupLoginView.IsVisible = false;
-            //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
-            //Cars.Add(newCar);
-            //popupLoginView.IsVisible = false;
-            //ClearEntryFields();
+            
         }
 
         //*******Storing to DB
@@ -140,22 +123,36 @@ namespace CarTracker {
         }
 
         private void SortByOption(object sender, System.EventArgs e) {
-            List<Car> tempList = new List<Car>(Cars);
-            int minIndex = 0;
+            //List<Car> tempList = new List<Car>(Cars);
 
-            for (int i = 0; i < tempList.Count; i++) {
-                minIndex = i;
-                for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
-                    if (string.Compare(tempList[unsort].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()]), tempList[minIndex].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()])) == -1) {
-                        minIndex = unsort;
-                    }
-                }
-                Car tempCar = tempList[minIndex];
-                tempList[minIndex] = tempList[i];
-                tempList[i] = tempCar;
+            List<Car> tempList = new List<Car>();
+
+            int minIndex = 0;
+            string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                //conn.CreateTable<Car>();
+                //conn.Insert(car);
+                var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);
+                //var carsList = conn.Table<Car>().ToList();
+                //tempList = carsList;
+
+                yourCarsList.ItemsSource = carsList;
             }
-            Cars = new ObservableCollection<Car>(tempList);
-            yourCarsList.ItemsSource = Cars;
+
+            //for (int i = 0; i < tempList.Count; i++) {
+            //    minIndex = i;
+            //    for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
+            //        if (string.Compare(tempList[unsort].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()]), tempList[minIndex].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()])) == -1) {
+            //            minIndex = unsort;
+            //        }
+            //    }
+            //    Car tempCar = tempList[minIndex];
+            //    tempList[minIndex] = tempList[i];
+            //    tempList[i] = tempCar;
+            //}
+            //Cars = new ObservableCollection<Car>(tempList);
+            //yourCarsList.ItemsSource = Cars;
 
         }
 

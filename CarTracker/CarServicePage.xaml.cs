@@ -34,10 +34,14 @@ namespace CarTracker {
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
-            Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
-            Services.Add(newService);
-            ServiceView.IsVisible = false;
-            ClearEntryFields();
+            if (date.Date.ToString() == null || millage.Text == null || location.Text == null || description.Text == null || car.Text == null) {
+                DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
+            } else {
+                Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
+                Services.Add(newService);
+                ServiceView.IsVisible = false;
+                ClearEntryFields();
+            }
         }
 
         private void ClearEntryFields() {
@@ -48,8 +52,7 @@ namespace CarTracker {
             car.Text = null;
         }
 
-        async void OnCellTapped (object sender, Xamarin.Forms.ItemTappedEventArgs e)
-        {
+        async void OnCellTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e) {
             var content = e.Item as Service;
             await Navigation.PushAsync(new ServiceDescription(content));
         }

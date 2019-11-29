@@ -39,7 +39,6 @@ namespace CarTracker.Models {
 
         public Car() { }
 
-        /*
         public Car(string licensePlateNumber, string vehicleMake, string vehicleModel, Color vehicleColor, string vehicleVin, string carNickname) {
             plate = licensePlateNumber;
             make = vehicleMake;
@@ -48,7 +47,7 @@ namespace CarTracker.Models {
             vin = vehicleVin;
             name = carNickname;
         }
-        */
+        
         public void ChangeNickName(string newNickname) {
             name = newNickname;
         }

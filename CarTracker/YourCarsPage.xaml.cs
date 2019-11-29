@@ -10,9 +10,6 @@ using System.Linq;
 using Color = Xamarin.Forms.Color;
 using System.Threading.Tasks;
 
-
-//using CustomCodeAttributes;
-
 namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
 
@@ -37,14 +34,6 @@ namespace CarTracker {
             var mu = mi.CommandParameter as Car;
             await DeleteCar(mu);
 
-
-
-            //DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    conn.Query<Car>("DELETE FROM Car WHERE Id=" + mu.Id.ToString());
-            //    SortByOption(null, null);
-            //}
         }
 
         async Task DeleteCar(Car car)
@@ -62,7 +51,6 @@ namespace CarTracker {
         }
 
         protected override void OnAppearing() {
-            //base.OnAppearing();
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Table<Car>().ToList();
 
@@ -91,14 +79,8 @@ namespace CarTracker {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
 
-                Car car = new Car() {
-                    plate = plateEntry.Text,
-                    make = makeEntry.Text,
-                    model = modelEntry.Text,
-                    v_color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
-                    vin = vinEntry.Text,
-                    name = nameEntry.Text
-                };
+                Car car = new Car(plateEntry.Text, makeEntry.Text, modelEntry.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vinEntry.Text, nameEntry.Text);
+                   
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.CreateTable<Car>();
@@ -132,9 +114,6 @@ namespace CarTracker {
         }
 
         private void SortByOption(object sender, System.EventArgs e) {
-            List<Car> tempList = new List<Car>();
-
-            int minIndex = 0;
             string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);

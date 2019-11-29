@@ -8,26 +8,7 @@ using SQLite;
 namespace CarTracker {
     public partial class App : Application {
 
-        public static string FilePath;//From video tutorial
-
-        //**************First thing
-        //private static CarDatabase carDatabase;
-
-        //public static CarDatabase CarDatabase
-        //{
-        //    get
-        //    {
-        //        if(carDatabase == null)
-        //        {
-        //            carDatabase = new CarDatabase(Path.Combine(
-        //                  Environment.GetFolderPath(
-        //                      Environment.SpecialFolder.LocalApplicationData),
-        //                      "CarDatabase.db3"));
-        //        }
-        //        return carDatabase;
-        //    }
-        //}
-        //*********************
+        public static string FilePath;
 
         public App()
         {
@@ -37,7 +18,6 @@ namespace CarTracker {
 
         }
 
-        //From video tutorial
         public App(string filePath)
         {
             InitializeComponent();

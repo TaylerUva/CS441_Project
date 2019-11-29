@@ -11,22 +11,22 @@ namespace CarTracker {
         public static string FilePath;//From video tutorial
 
         //**************First thing
-        private static CarDatabase carDatabase;
+        //private static CarDatabase carDatabase;
 
-        public static CarDatabase CarDatabase
-        {
-            get
-            {
-                if(carDatabase == null)
-                {
-                    carDatabase = new CarDatabase(Path.Combine(
-                          Environment.GetFolderPath(
-                              Environment.SpecialFolder.LocalApplicationData),
-                              "CarDatabase.db3"));
-                }
-                return carDatabase;
-            }
-        }
+        //public static CarDatabase CarDatabase
+        //{
+        //    get
+        //    {
+        //        if(carDatabase == null)
+        //        {
+        //            carDatabase = new CarDatabase(Path.Combine(
+        //                  Environment.GetFolderPath(
+        //                      Environment.SpecialFolder.LocalApplicationData),
+        //                      "CarDatabase.db3"));
+        //        }
+        //        return carDatabase;
+        //    }
+        //}
         //*********************
 
         public App()

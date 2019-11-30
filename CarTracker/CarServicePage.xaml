@@ -114,10 +114,12 @@
 								   TextColor="White"
 								   BackgroundColor="#C0808080"
 								   Placeholder="Location"></Entry>
-							<Entry x:Name="description"
-								   TextColor="White"
-								   BackgroundColor="#C0808080"
-								   Placeholder="Description"></Entry>
+							<Editor x:Name="description"
+									TextColor="White"
+									HeightRequest="100"
+									PlaceholderColor="#B3B3B3"
+									BackgroundColor="#C0808080"
+									Placeholder="Description"></Editor>
 							<Picker x:Name="carPicker"
 									TextColor="White"
 									BackgroundColor="#C0808080"

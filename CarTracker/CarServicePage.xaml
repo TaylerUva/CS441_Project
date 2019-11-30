@@ -5,23 +5,31 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
 			 ios:Page.UseSafeArea="true"
+			 BackgroundImage="space.png"
 			 mc:Ignorable="d"
+			 Title="Service Records"
 			 x:Class="CarTracker.CarServicePage">
 	<ContentPage.Content>
 		<AbsoluteLayout>
-			<StackLayout BackgroundColor="#3d3e40">
+			<StackLayout Margin="10">
 				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
+						TextColor="White"
+						WidthRequest="200"
+						BackgroundColor="DarkSlateGray"
 						Clicked="AddNewCarClicked"
-						Text="Add Service" />
+						Text="Record Service" />
 				<Picker x:Name="statementPicker"
 						Title="Sort by"
 						HorizontalOptions="Center"
+						WidthRequest="200"
+						TextColor="White"
+						BackgroundColor="SlateGray"
 						SelectedIndexChanged="OnSortClicked" />
 				<ListView x:Name="yourCarsList"
 						  HasUnevenRows="True"
 						  ItemTapped="OnCellTapped"
-						  BackgroundColor="#3d3e40">
+						  BackgroundColor="Transparent">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -83,35 +91,52 @@
 						 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
 						 AbsoluteLayout.LayoutFlags="All">
 				<StackLayout VerticalOptions="Center"
+							 HeightRequest="500"
+							 WidthRequest="300"
 							 HorizontalOptions="Center">
-					<StackLayout Orientation="Vertical"
-								 HeightRequest="500"
-								 WidthRequest="300"
-								 BackgroundColor="Black">
-						<DatePicker x:Name="date"
-									Margin="20,20,20,10" />
-						<Entry Margin="20,0,20,0"
-							   x:Name="mileage"
-							   Placeholder="mileage"
-							   TextChanged="TextChange"
-							   Keyboard="Numeric"></Entry>
-						<Entry Margin="20,20,20,10"
-							   x:Name="location"
-							   Placeholder="Location"></Entry>
-						<Entry Margin="20,0,20,0"
-							   x:Name="description"
-							   Placeholder="Description"></Entry>
-						<Picker Margin="20,0,20,0"
-								x:Name="carPicker"
-								Title="Car" />
+					<Grid>
+						<Image Source="space.png"
+							   AbsoluteLayout.LayoutBounds="0,0,1,1"
+							   AbsoluteLayout.LayoutFlags="All"
+							   Aspect="AspectFill" />
+						<StackLayout Orientation="Vertical"
+									 Margin="20,30,20,20"
+									 Spacing="20"
+									 BackgroundColor="Transparent">
+							<DatePicker x:Name="date"
+										TextColor="White"
+										BackgroundColor="#C0808080" />
+							<Entry x:Name="mileage"
+								   TextColor="White"
+								   BackgroundColor="#C0808080"
+								   Placeholder="Mileage (#)"
+								   TextChanged="TextChange"
+								   Keyboard="Numeric"></Entry>
+							<Entry x:Name="location"
+								   TextColor="White"
+								   BackgroundColor="#C0808080"
+								   Placeholder="Location"></Entry>
+							<Entry x:Name="description"
+								   TextColor="White"
+								   BackgroundColor="#C0808080"
+								   Placeholder="Description"></Entry>
+							<Picker x:Name="carPicker"
+									TextColor="White"
+									BackgroundColor="#C0808080"
+									Title="Car" />
 
-						<Button Clicked="ConfirmNewName"
-								Margin="20,0,20,0"
-								Text="Add Service" />
-						<Button Clicked="CancelService"
-								Margin="20,0,20,0"
-								Text="Cancel" />
-					</StackLayout>
+							<Button Clicked="ConfirmNewName"
+									TextColor="White"
+									WidthRequest="200"
+									BackgroundColor="DarkSlateGray"
+									Text="Add Service" />
+							<Button Clicked="CancelService"
+									TextColor="White"
+									WidthRequest="200"
+									BackgroundColor="DarkSlateGray"
+									Text="Cancel" />
+						</StackLayout>
+					</Grid>
 				</StackLayout>
 			</ContentView>
 		</AbsoluteLayout>

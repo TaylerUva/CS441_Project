@@ -28,7 +28,7 @@
 				BackgroundColor="DarkSlateGray"
 				TextColor="White"
 				Clicked="YourCarsClicked" />
-		<Button Text="Service Page"
+		<Button Text="Service Records"
 				TextColor="White"
 				BackgroundColor="DarkSlateGray"
 				Clicked="Next_Page_Clicked" />

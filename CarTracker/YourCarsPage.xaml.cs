@@ -14,11 +14,16 @@ namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
 
         public static Dictionary<string, string> SortingAttributes = new Dictionary<string, string>() {
-            {"Sort by license plate", "plate"},
-            {"Sort by make", "make"},
-            {"Sort by model", "model"},
-            {"Sort by VIN", "vin"},
-            {"Sort by nickname", "name"}
+            {"Sort by nickname ↑", "name ASC"},
+            {"Sort by nickname ↓", "name DESC"},
+            {"Sort by license plate ↑", "plate ASC"},
+            {"Sort by license plate ↓", "plate DESC"},
+            {"Sort by make ↑", "make ASC"},
+            {"Sort by make ↓", "make DESC"},
+            {"Sort by model ↑", "model ASC"},
+            {"Sort by model ↓", "model DESC"},
+            {"Sort by VIN ↑", "vin ASC"},
+            {"Sort by VIN ↓", "vin DESC"},
         };
 
         readonly SQLiteConnection sqlConn;

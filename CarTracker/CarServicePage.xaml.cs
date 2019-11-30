@@ -17,10 +17,14 @@ namespace CarTracker {
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage {
         public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() {
-            { "Sort by date", "date" },
-            { "Sort by mileage", "mileage" },
-            { "Sort by location", "location" },
-            { "Sort by car", "car" }
+            { "Sort by date ↑", "date ASC" },
+            { "Sort by date ↓", "date DESC" },
+            { "Sort by car ↑", "car ASC" },
+            { "Sort by car ↓", "car DESC" },
+            { "Sort by mileage ↑", "mileage ASC" },
+            { "Sort by mileage ↓", "mileage DESC" },
+            { "Sort by location ↑", "location ASC" },
+            { "Sort by location ↓", "location DESC" },
         };
         readonly SQLiteConnection sqlConn;
 

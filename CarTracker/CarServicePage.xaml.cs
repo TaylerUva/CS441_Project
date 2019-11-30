@@ -38,7 +38,7 @@ namespace CarTracker {
             if (date.Date.ToString() == null || millage.Text == null || location.Text == null || description.Text == null || car.Text == null) {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
-                Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
+                Service newService = new Service(date.Date.ToString(), int.Parse(millage.Text), location.Text, description.Text, car.Text);
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
                     conn.CreateTable<Service>();
@@ -127,8 +127,8 @@ namespace CarTracker {
         async void OnDelete(object sender, EventArgs e)
         {
             var mi = ((MenuItem)sender);
-            var mu = mi.CommandParameter as Service;
-            await DeleteService(mu);
+            var deleteService = mi.CommandParameter as Service;
+            await DeleteService(deleteService);
 
         }
 
@@ -142,7 +142,6 @@ namespace CarTracker {
                 {
                     conn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
                     OnSortClicked(null, null);
-                    //SortByOption(null, null);
                 }
             }
         }

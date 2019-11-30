@@ -14,18 +14,25 @@ namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
 
         public static Dictionary<string, string> SortingAttributes = new Dictionary<string, string>() {
-            {"Sort by license plate", "plate"},
-            {"Sort by make", "make"},
-            {"Sort by model", "model"},
-            {"Sort by VIN", "vin"},
-            {"Sort by nickname", "name"}
+            {"Sort by nickname ↑", "name ASC"},
+            {"Sort by nickname ↓", "name DESC"},
+            {"Sort by license plate ↑", "plate ASC"},
+            {"Sort by license plate ↓", "plate DESC"},
+            {"Sort by make ↑", "make ASC"},
+            {"Sort by make ↓", "make DESC"},
+            {"Sort by model ↑", "model ASC"},
+            {"Sort by model ↓", "model DESC"},
+            {"Sort by VIN ↑", "vin ASC"},
+            {"Sort by VIN ↓", "vin DESC"},
         };
 
+        readonly SQLiteConnection sqlConn;
+
         public YourCarsPage() {
+            sqlConn = new SQLiteConnection(App.FilePath);
             InitializeComponent();
             PopulateSortingPicker();
             PopulateColorPicker();
-
         }
 
         async void OnDelete(object sender, EventArgs e) {
@@ -39,20 +46,14 @@ namespace CarTracker {
             var deleteSelected = await DisplayAlert("Are you sure you want to delete this car?", "You cannot undo this action", "Delete", "Cancel");
 
             if (deleteSelected) {
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                    conn.Query<Car>("DELETE FROM Car WHERE Id=" + car.Id.ToString());
-                    SortByOption(null, null);
-                }
+                sqlConn.Query<Car>("DELETE FROM Car WHERE Id=" + car.Id.ToString());
+                SortCars(null, null);
             }
         }
 
         protected override void OnAppearing() {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                var carsList = conn.Table<Car>().ToList();
-                yourCarsList.ItemsSource = carsList;
-            }
-            SortByOption(null, null);
-
+            yourCarsList.ItemsSource = sqlConn.Table<Car>().ToList();
+            SortCars(null, null);
         }
 
         private void PopulateSortingPicker() {
@@ -68,7 +69,7 @@ namespace CarTracker {
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e) {
-            popupLoginView.IsVisible = true;
+            newCarPopup.IsVisible = true;
         }
 
         private void ConfirmNewCar(object sender, System.EventArgs e) {
@@ -78,28 +79,23 @@ namespace CarTracker {
 
                 Car car = new Car(plateEntry.Text, makeEntry.Text, modelEntry.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vinEntry.Text, nameEntry.Text);
 
+                sqlConn.CreateTable<Car>();
+                sqlConn.Insert(car);
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                    conn.CreateTable<Car>();
-                    conn.Insert(car);
-                    var carsList = conn.Table<Car>().ToList();
+                yourCarsList.ItemsSource = sqlConn.Table<Car>().ToList();
 
-                    yourCarsList.ItemsSource = carsList;
-                }
+                SortCars(null, null);
 
-                SortByOption(null, null);
-
-
-                popupLoginView.IsVisible = false;
+                newCarPopup.IsVisible = false;
 
                 ClearEntryFields();
-                popupLoginView.IsVisible = false;
+                newCarPopup.IsVisible = false;
             }
 
         }
 
         private void CancelNewCar(object sender, System.EventArgs e) {
-            popupLoginView.IsVisible = false;
+            newCarPopup.IsVisible = false;
         }
 
         private void ClearEntryFields() {
@@ -110,13 +106,11 @@ namespace CarTracker {
             nameEntry.Text = null;
         }
 
-        private void SortByOption(object sender, System.EventArgs e) {
+        private void SortCars(object sender, System.EventArgs e) {
             string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);
+            var carsList = sqlConn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);
 
-                yourCarsList.ItemsSource = carsList;
-            }
+            yourCarsList.ItemsSource = carsList;
 
         }
 

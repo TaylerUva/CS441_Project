@@ -1,24 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
 			 ios:Page.UseSafeArea="true"
-			 mc:Ignorable="d"
 			 x:Class="CarTracker.MainPage"
-             BackgroundImage="space.png">
-    <StackLayout Margin="10">
+			 BackgroundColor="Transparent"
+			 BackgroundImage="space.png">
+	<StackLayout Margin="40"
+				 Spacing="20"
+				 WidthRequest="3"
+				 MinimumWidthRequest="2"
+				 HeightRequest="3">
 
-        <!-- Place new controls here -->
-        <Label HorizontalOptions="Center"
+		<Label HorizontalOptions="Center"
 			   VerticalOptions="CenterAndExpand" />
-        <Image x:Name="myCarPic"/>
-       
-        <Button Text="Your Cars"
+		<Label Text="CarTracker"
+			   HorizontalTextAlignment="Center"
+			   FontSize="50"
+			   TextColor="White" />
+		<Image Source="carService.png"
+			   Margin="0,40,0,40" />
+		<Button Text="Your Cars"
+				BackgroundColor="DarkSlateGray"
+				TextColor="White"
 				Clicked="YourCarsClicked" />
-        <Button Text="Service Page"
-				Clicked="Next_Page_Clicked" />
+		<Button Text="Service Records"
+				TextColor="White"
+				BackgroundColor="DarkSlateGray"
+				Clicked="ServiceRecordsClicked" />
 
-    </StackLayout>
+	</StackLayout>
 </ContentPage>

@@ -16,10 +16,16 @@ namespace CarTracker {
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage {
-        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by date", "date" }, { "Sort by mileage", "mileage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
+        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() {
+            { "Sort by date", "date" },
+            { "Sort by mileage", "mileage" },
+            { "Sort by location", "location" },
+            { "Sort by car", "car" }
         };
+        readonly SQLiteConnection sqlConn;
 
         public CarServicePage() {
+            sqlConn = new SQLiteConnection(App.FilePath);
             InitializeComponent();
             PopulateSortingPicker();
         }
@@ -31,14 +37,11 @@ namespace CarTracker {
         }
 
         private void PopulateCarPicker() {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                var serviceList = conn.Table<Car>().ToList();
-                var nicknames = new List<string>();
-                foreach (Car element in serviceList) {
-                    nicknames.Add(element.name);
-                }
-                carPicker.ItemsSource = nicknames;
+            var nicknames = new List<string>();
+            foreach (Car element in sqlConn.Table<Car>().ToList()) {
+                nicknames.Add(element.name);
             }
+            carPicker.ItemsSource = nicknames;
         }
 
         private async void AddNewCarClicked(object sender, System.EventArgs e) {
@@ -56,26 +59,21 @@ namespace CarTracker {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
                 Service newService = new Service(date.Date, int.Parse(mileage.Text), location.Text, description.Text, carPicker.SelectedItem.ToString());
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                    conn.CreateTable<Service>();
-                    conn.Insert(newService);
-                    var serviceList = conn.Table<Service>().ToList();
+                sqlConn.CreateTable<Service>();
+                sqlConn.Insert(newService);
 
-                    yourCarsList.ItemsSource = serviceList;
-                }
+                yourCarsList.ItemsSource = sqlConn.Table<Service>().ToList();
+
                 newServicePopup.IsVisible = false;
-                OnSortClicked(null, null);
+                SortRecords(null, null);
                 ClearEntryFields();
             }
 
         }
 
         protected override void OnAppearing() {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                var serviceList = conn.Table<Service>().ToList();
-                yourCarsList.ItemsSource = serviceList;
-            }
-            OnSortClicked(null, null);
+            yourCarsList.ItemsSource = sqlConn.Table<Service>().ToList();
+            SortRecords(null, null);
         }
 
         private void ClearEntryFields() {
@@ -91,14 +89,11 @@ namespace CarTracker {
         }
 
 
-        private void OnSortClicked(object sender, System.EventArgs e) {
+        private void SortRecords(object sender, System.EventArgs e) {
             string sortAttribute = SortingStatement[sortingPicker.SelectedItem.ToString()];
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                var carsList = conn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
+            var carsList = sqlConn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
 
-                yourCarsList.ItemsSource = carsList;
-            }
-
+            yourCarsList.ItemsSource = carsList;
         }
 
         private void CancelService(object sender, System.EventArgs e) {
@@ -148,10 +143,8 @@ namespace CarTracker {
             var deleteSelected = await DisplayAlert("Are you sure you want to delete this service?", "You cannot undo this action", "Delete", "Cancel");
 
             if (deleteSelected) {
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
-                    conn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
-                    OnSortClicked(null, null);
-                }
+                sqlConn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
+                SortRecords(null, null);
             }
         }
 

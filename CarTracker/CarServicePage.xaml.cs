@@ -22,7 +22,6 @@ namespace CarTracker {
         public CarServicePage() {
             InitializeComponent();
             PopulateStatementPicker();
-            PopulateCarPicker();
         }
 
         private void PopulateStatementPicker() {
@@ -31,22 +30,25 @@ namespace CarTracker {
             statementPicker.SelectedItem = PickerStatementOption[0];
         }
 
-        private void PopulateCarPicker()
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
+        private void PopulateCarPicker() {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var serviceList = conn.Table<Car>().ToList();
                 var nicknames = new List<string>();
-                foreach (Car element in serviceList)
-                {
+                foreach (Car element in serviceList) {
                     nicknames.Add(element.name);
                 }
                 carPicker.ItemsSource = nicknames;
             }
         }
 
-        private void AddNewCarClicked(object sender, System.EventArgs e) {
-            ServiceView.IsVisible = true;
+        private async void AddNewCarClicked(object sender, System.EventArgs e) {
+            PopulateCarPicker();
+            if (carPicker.ItemsSource.Count == 0) {
+                var addNewCarSelected = await DisplayAlert("You don't have any cars to service!", "Please add a car to service", "Add New Car", "Cancel");
+                if (addNewCarSelected) await Navigation.PushAsync(new YourCarsPage());
+            } else {
+                ServiceView.IsVisible = true;
+            }
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
@@ -54,8 +56,7 @@ namespace CarTracker {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
                 Service newService = new Service(date.Date, int.Parse(mileage.Text), location.Text, description.Text, carPicker.SelectedItem.ToString());
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.CreateTable<Service>();
                     conn.Insert(newService);
                     var serviceList = conn.Table<Service>().ToList();
@@ -69,10 +70,8 @@ namespace CarTracker {
 
         }
 
-        protected override void OnAppearing()
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
+        protected override void OnAppearing() {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var serviceList = conn.Table<Service>().ToList();
                 yourCarsList.ItemsSource = serviceList;
             }
@@ -94,14 +93,13 @@ namespace CarTracker {
 
         private void OnSortClicked(object sender, System.EventArgs e) {
             string sortAttribute = SortingStatement[statementPicker.SelectedItem.ToString()];
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
 
                 yourCarsList.ItemsSource = carsList;
             }
-           
-         }
+
+        }
 
         private void CancelService(object sender, System.EventArgs e) {
             ClearEntryFields();
@@ -139,22 +137,18 @@ namespace CarTracker {
                 Console.WriteLine("Exception caught: {0}", ex);
             }
         }
-        async void OnDelete(object sender, EventArgs e)
-        {
+        async void OnDelete(object sender, EventArgs e) {
             var mi = ((MenuItem)sender);
             var deleteService = mi.CommandParameter as Service;
             await DeleteService(deleteService);
 
         }
 
-        async Task DeleteService(Service service)
-        {
+        async Task DeleteService(Service service) {
             var deleteSelected = await DisplayAlert("Are you sure you want to delete this service?", "You cannot undo this action", "Delete", "Cancel");
 
-            if (deleteSelected)
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                {
+            if (deleteSelected) {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
                     OnSortClicked(null, null);
                 }

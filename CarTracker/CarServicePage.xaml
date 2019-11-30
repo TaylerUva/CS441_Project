@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -6,24 +6,26 @@
 			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
 			 ios:Page.UseSafeArea="true"
 			 mc:Ignorable="d"
-			 x:Class="CarTracker.CarServicePage">
+			 x:Class="CarTracker.CarServicePage"
+			 BackgroundImage="space.png">
 	<!--cartracker = class & carservicepage = page its going to-->
 	<ContentPage.Content>
 		<AbsoluteLayout>
 			<StackLayout BackgroundColor="#3d3e40">
 				<!-- Place new controls here -->
-				<Entry x:Name="slugName"
+				<!--<Entry x:Name="slugName"
 					   HorizontalOptions="CenterAndExpand"
 					   Placeholder="Write Here"
-					   VerticalOptions="Center" />
+					   VerticalOptions="Center" />-->
 				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="AddNewCarClicked"
-						Text="My Service" />
-				<Button HorizontalOptions="Center"
+						Text="Add New Service" />
+				<!--<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="OnSortClicked"
-						Text="Sort" />
+
+						Text="Sort" />-->
 				<Picker x:Name="statementPicker"
 						Title="Sort by"
 						HorizontalOptions="Center"
@@ -32,11 +34,13 @@
 						  HasUnevenRows="True"
 						  ItemTapped="OnCellTapped"
 						  BackgroundColor="#3d3e40">
+
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<ViewCell.View>
 									<Grid>
+
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto" />
 											<ColumnDefinition Width="Auto" />

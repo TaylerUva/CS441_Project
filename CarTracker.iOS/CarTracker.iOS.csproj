@@ -136,6 +136,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\space.png" />
     <BundleResource Include="Resources\carService.png" />
   </ItemGroup>
 </Project>

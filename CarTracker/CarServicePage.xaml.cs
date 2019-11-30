@@ -53,6 +53,7 @@ namespace CarTracker {
                 ServiceView.IsVisible = false;
                 ClearEntryFields();
             }
+
         }
 
         protected override void OnAppearing()

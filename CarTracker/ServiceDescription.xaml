@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CarTracker.ServiceDescription">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CarTracker.ServiceDescription" BackgroundImage="space.png">
     <ContentPage.Content>
         <StackLayout>
 
-            <Label Text="Date" TextDecorations="Underline" />
-            <Label Text= "{Binding date}" />
+            <Label Text="Date" TextDecorations="Underline"  TextColor="White" HorizontalTextAlignment="Center"/>
+            <Label Text= "{Binding date}"  TextColor="White" HorizontalTextAlignment="Center" />
 
-            <Label Text="Mileage" TextDecorations="Underline"/>
-            <Label Text= "{Binding millage}" />
+            <Label Text="Mileage" TextDecorations="Underline" TextColor="White" HorizontalTextAlignment="Center"/>
+            <Label Text= "{Binding millage}" TextColor="White" HorizontalTextAlignment="Center" />
 
-            <Label Text="Location" TextDecorations="Underline"/>
-            <Label Text= "{Binding location}" />
+            <Label Text="Location" TextDecorations="Underline" TextColor="White" HorizontalTextAlignment="Center"/>
+            <Label Text= "{Binding location}"  TextColor="White" HorizontalTextAlignment="Center" />
 
-            <Label Text="Description" TextDecorations="Underline"/>
-            <Label Text= "{Binding description}" />
+            <Label Text="Description" TextDecorations="Underline" TextColor="White" HorizontalTextAlignment="Center"/>
+            <Label Text= "{Binding description}"  TextColor="White" HorizontalTextAlignment="Center" />
 
-            <Label Text="Car" TextDecorations="Underline"/>
-            <Label Text= "{Binding car}" />
+            <Label Text="Car" TextDecorations="Underline" TextColor="White" HorizontalTextAlignment="Center"/>
+            <Label Text= "{Binding car}" TextColor="White" HorizontalTextAlignment="Center" />
 
         </StackLayout>
     </ContentPage.Content>

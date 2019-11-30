@@ -7,18 +7,22 @@
 			 ios:Page.UseSafeArea="true"
 			 mc:Ignorable="d"
 			 x:Class="CarTracker.MainPage"
-             BackgroundImage="space.png">
-    <StackLayout Margin="10">
+			 BackgroundColor="Transparent"
+			 BackgroundImage="space.png">
+	<StackLayout Margin="10">
 
-        <!-- Place new controls here -->
-        <Label HorizontalOptions="Center"
+		<Label HorizontalOptions="Center"
 			   VerticalOptions="CenterAndExpand" />
-        <Image x:Name="myCarPic"/>
-       
-        <Button Text="Your Cars"
+		<Image x:Name="myCarPic" />
+
+		<Button Text="Your Cars"
+				BackgroundColor="DarkSlateGray"
+				TextColor="White"
 				Clicked="YourCarsClicked" />
-        <Button Text="Service Page"
+		<Button Text="Service Page"
+				TextColor="White"
+				BackgroundColor="DarkSlateGray"
 				Clicked="Next_Page_Clicked" />
 
-    </StackLayout>
+	</StackLayout>
 </ContentPage>

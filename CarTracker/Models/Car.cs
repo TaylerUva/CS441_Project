@@ -26,23 +26,6 @@ namespace CarTracker.Models {
             name = carNickname;
         }
 
-        public string GetAttribute(string attribute) {
-            switch (attribute) {
-            case "plate":
-                return plate;
-            case "make":
-                return make;
-            case "model":
-                return model;
-            case "vin":
-                return vin;
-            case "name":
-                return name;
-            default:
-                return null;
-            }
-        }
-
         public enum Color {
             //TODO: Add more colors
             Black,

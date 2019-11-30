@@ -9,11 +9,20 @@
 			 x:Class="CarTracker.MainPage"
 			 BackgroundColor="Transparent"
 			 BackgroundImage="space.png">
-	<StackLayout Margin="10">
+	<StackLayout Margin="40"
+				 Spacing="20"
+				 WidthRequest="3"
+				 MinimumWidthRequest="2"
+				 HeightRequest="3">
 
 		<Label HorizontalOptions="Center"
 			   VerticalOptions="CenterAndExpand" />
-		<Image x:Name="myCarPic" />
+		<Label Text="CarTracker"
+			   HorizontalTextAlignment="Center"
+			   FontSize="50"
+			   TextColor="White" />
+		<Image x:Name="myCarPic"
+			   Margin="0,40,0,40" />
 
 		<Button Text="Your Cars"
 				BackgroundColor="DarkSlateGray"

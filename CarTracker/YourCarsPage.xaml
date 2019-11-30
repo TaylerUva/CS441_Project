@@ -18,8 +18,8 @@
 						Text="Add New Car" />
 				<Picker x:Name="sortPicker"
 						Title="Sort by"
-						WidthRequest="200"
 						HorizontalOptions="Center"
+						WidthRequest="200"
 						TextColor="White"
 						BackgroundColor="SlateGray"
 						SelectedIndexChanged="SortByOption" />
@@ -92,7 +92,7 @@
 						 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
 						 AbsoluteLayout.LayoutFlags="All">
 				<StackLayout VerticalOptions="Center"
-							 HeightRequest="450"
+							 HeightRequest="500"
 							 WidthRequest="300"
 							 HorizontalOptions="Center">
 					<Grid>
@@ -101,30 +101,30 @@
 							   AbsoluteLayout.LayoutFlags="All"
 							   Aspect="AspectFill" />
 						<StackLayout Orientation="Vertical"
+									 Margin="20,30,20,20"
+									 Spacing="20"
 									 BackgroundColor="Transparent">
-							<Entry Margin="20,20,20,10"
-								   x:Name="plateEntry"
+							<Entry x:Name="plateEntry"
 								   Placeholder="License Plate"></Entry>
-							<Entry Margin="20,0,20,0"
-								   x:Name="makeEntry"
+							<Entry x:Name="makeEntry"
 								   Placeholder="Make"></Entry>
-							<Entry Margin="20,20,20,10"
-								   x:Name="modelEntry"
+							<Entry x:Name="modelEntry"
 								   Placeholder="Model"></Entry>
-							<Picker Margin="20,0,20,0"
-									x:Name="colorPicker"
+							<Picker x:Name="colorPicker"
 									Title="Color" />
-							<Entry Margin="20,20,20,10"
-								   x:Name="vinEntry"
+							<Entry x:Name="vinEntry"
 								   Placeholder="VIM"></Entry>
-							<Entry Margin="20,0,20,0"
-								   x:Name="nameEntry"
+							<Entry x:Name="nameEntry"
 								   Placeholder="Name"></Entry>
 							<Button Clicked="ConfirmNewCar"
-									Margin="20,0,20,0"
+									TextColor="White"
+									WidthRequest="200"
+									BackgroundColor="DarkSlateGray"
 									Text="Add car" />
 							<Button Clicked="CancelNewCar"
-									Margin="20,0,20,0"
+									TextColor="White"
+									WidthRequest="200"
+									BackgroundColor="DarkSlateGray"
 									Text="Cancel" />
 						</StackLayout>
 					</Grid>

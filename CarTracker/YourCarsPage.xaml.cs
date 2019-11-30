@@ -41,7 +41,7 @@ namespace CarTracker {
             if (deleteSelected) {
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.Query<Car>("DELETE FROM Car WHERE Id=" + car.Id.ToString());
-                    SortByOption(null, null);
+                    SortCars(null, null);
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace CarTracker {
                 var carsList = conn.Table<Car>().ToList();
                 yourCarsList.ItemsSource = carsList;
             }
-            SortByOption(null, null);
+            SortCars(null, null);
 
         }
 
@@ -68,7 +68,7 @@ namespace CarTracker {
         }
 
         private void AddNewCarClicked(object sender, System.EventArgs e) {
-            popupLoginView.IsVisible = true;
+            newCarPopup.IsVisible = true;
         }
 
         private void ConfirmNewCar(object sender, System.EventArgs e) {
@@ -87,19 +87,19 @@ namespace CarTracker {
                     yourCarsList.ItemsSource = carsList;
                 }
 
-                SortByOption(null, null);
+                SortCars(null, null);
 
 
-                popupLoginView.IsVisible = false;
+                newCarPopup.IsVisible = false;
 
                 ClearEntryFields();
-                popupLoginView.IsVisible = false;
+                newCarPopup.IsVisible = false;
             }
 
         }
 
         private void CancelNewCar(object sender, System.EventArgs e) {
-            popupLoginView.IsVisible = false;
+            newCarPopup.IsVisible = false;
         }
 
         private void ClearEntryFields() {
@@ -110,7 +110,7 @@ namespace CarTracker {
             nameEntry.Text = null;
         }
 
-        private void SortByOption(object sender, System.EventArgs e) {
+        private void SortCars(object sender, System.EventArgs e) {
             string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);

@@ -23,7 +23,7 @@
 						WidthRequest="200"
 						TextColor="White"
 						BackgroundColor="SlateGray"
-						SelectedIndexChanged="SortByOption" />
+						SelectedIndexChanged="SortCars" />
 				<ListView x:Name="yourCarsList"
 						  HasUnevenRows="True"
 						  SelectionMode="None"
@@ -86,7 +86,7 @@
 					</ListView.ItemTemplate>
 				</ListView>
 			</StackLayout>
-			<ContentView x:Name="popupLoginView"
+			<ContentView x:Name="newCarPopup"
 						 BackgroundColor="#C0808080"
 						 Padding="10, 0"
 						 IsVisible="false"

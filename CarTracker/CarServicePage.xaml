@@ -7,114 +7,114 @@
 			 ios:Page.UseSafeArea="true"
 			 mc:Ignorable="d"
 			 x:Class="CarTracker.CarServicePage">
-    <ContentPage.Content>
-        <AbsoluteLayout>
-            <StackLayout BackgroundColor="#3d3e40">
-                <Button HorizontalOptions="Center"
+	<ContentPage.Content>
+		<AbsoluteLayout>
+			<StackLayout BackgroundColor="#3d3e40">
+				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="AddNewCarClicked"
 						Text="Add Service" />
-                <Picker x:Name="statementPicker"
+				<Picker x:Name="statementPicker"
 						Title="Sort by"
 						HorizontalOptions="Center"
 						SelectedIndexChanged="OnSortClicked" />
-                <ListView x:Name="yourCarsList"
+				<ListView x:Name="yourCarsList"
 						  HasUnevenRows="True"
 						  ItemTapped="OnCellTapped"
 						  BackgroundColor="#3d3e40">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem Clicked="OnDelete"
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<ViewCell.ContextActions>
+									<MenuItem Clicked="OnDelete"
 											  CommandParameter="{Binding .}"
 											  Text="Delete"
 											  IsDestructive="True" />
-                                </ViewCell.ContextActions>
-                                <ViewCell.View>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <StackLayout Grid.Column="1"
+								</ViewCell.ContextActions>
+								<ViewCell.View>
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="Auto" />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<StackLayout Grid.Column="1"
 													 Grid.Row="0"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding car}"
+											<Label Text="{Binding car}"
 												   TextColor="White" />
 
-                                        </StackLayout>
+										</StackLayout>
 
-                                        <StackLayout Grid.Column="2"
+										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding date}"
+											<Label Text="{Binding date, StringFormat='{0:MMMM dd, yyyy}'}"
 												   TextColor="White" />
-                                        </StackLayout>
+										</StackLayout>
 
-                                        <StackLayout Grid.Column="3"
+										<StackLayout Grid.Column="3"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding mileage}"
+											<Label Text="{Binding mileage}"
 												   TextColor="White" />
-                                        </StackLayout>
+										</StackLayout>
 
-                                        <StackLayout Grid.Column="2"
+										<StackLayout Grid.Column="2"
 													 Grid.Row="2"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding location}"
+											<Label Text="{Binding location}"
 												   TextColor="White" />
-                                        </StackLayout>
-                                    </Grid>
-                                </ViewCell.View>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <ContentView x:Name="ServiceView"
+										</StackLayout>
+									</Grid>
+								</ViewCell.View>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+			<ContentView x:Name="ServiceView"
 						 BackgroundColor="#C0808080"
 						 Padding="10, 0"
 						 IsVisible="false"
 						 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
 						 AbsoluteLayout.LayoutFlags="All">
-                <StackLayout VerticalOptions="Center"
+				<StackLayout VerticalOptions="Center"
 							 HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical"
+					<StackLayout Orientation="Vertical"
 								 HeightRequest="500"
 								 WidthRequest="300"
 								 BackgroundColor="Black">
-                        <DatePicker x:Name="date"
+						<DatePicker x:Name="date"
 									Margin="20,20,20,10" />
-                        <Entry Margin="20,0,20,0"
+						<Entry Margin="20,0,20,0"
 							   x:Name="mileage"
 							   Placeholder="mileage"
 							   TextChanged="TextChange"
 							   Keyboard="Numeric"></Entry>
-                        <Entry Margin="20,20,20,10"
+						<Entry Margin="20,20,20,10"
 							   x:Name="location"
 							   Placeholder="Location"></Entry>
-                        <Entry Margin="20,0,20,0"
+						<Entry Margin="20,0,20,0"
 							   x:Name="description"
 							   Placeholder="Description"></Entry>
-                        <Picker Margin="20,0,20,0"
+						<Picker Margin="20,0,20,0"
 								x:Name="carPicker"
 								Title="Car" />
 
-                        <Button Clicked="ConfirmNewName"
+						<Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"
 								Text="Add Service" />
-                        <Button Clicked="CancelService"
+						<Button Clicked="CancelService"
 								Margin="20,0,20,0"
 								Text="Cancel" />
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>
-        </AbsoluteLayout>
-    </ContentPage.Content>
+					</StackLayout>
+				</StackLayout>
+			</ContentView>
+		</AbsoluteLayout>
+	</ContentPage.Content>
 
 </ContentPage>

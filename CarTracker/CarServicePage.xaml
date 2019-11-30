@@ -7,8 +7,7 @@
 			 ios:Page.UseSafeArea="true"
 			 mc:Ignorable="d"
 			 x:Class="CarTracker.CarServicePage"
-             BackgroundImage="space.png"
-             >
+			 BackgroundImage="space.png">
 	<!--cartracker = class & carservicepage = page its going to-->
 	<ContentPage.Content>
 		<AbsoluteLayout>
@@ -27,11 +26,6 @@
 						Clicked="OnSortClicked"
 
 						Text="Sort" />-->
-                <Picker x:Name="statementPicker" Title="Sort by" HorizontalOptions="Center" SelectedIndexChanged="OnSortClicked" />
-				<ListView x:Name="yourCarsList" HasUnevenRows="True" ItemTapped="OnCellTapped"
-              BackgroundColor="#3d3e40">
-
-						Text="Sort" />
 				<Picker x:Name="statementPicker"
 						Title="Sort by"
 						HorizontalOptions="Center"
@@ -46,7 +40,7 @@
 							<ViewCell>
 								<ViewCell.View>
 									<Grid>
-                   
+
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto" />
 											<ColumnDefinition Width="Auto" />

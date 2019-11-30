@@ -3,25 +3,11 @@ using Xamarin.Forms;
 using System.IO;
 using Xamarin.Forms.Xaml;
 using CarTracker.Models;
+using SQLite;
 
 namespace CarTracker {
     public partial class App : Application {
-        private static CarDatabase carDatabase;
-
-        public static CarDatabase CarDatabase
-        {
-            get
-            {
-                if(carDatabase == null)
-                {
-                    carDatabase = new CarDatabase(Path.Combine(
-                          Environment.GetFolderPath(
-                              Environment.SpecialFolder.LocalApplicationData),
-                              "CarDatabase.db3"));
-                }
-                return carDatabase;
-            }
-        }
+        public static string FilePath;
 
         public App()
         {
@@ -31,9 +17,23 @@ namespace CarTracker {
 
         }
 
+        public App(string filePath)
+        {
+            InitializeComponent();
+
+            MainPage = new NavigationPage(new MainPage());
+
+            FilePath = filePath;
+        }
+
         protected override void OnStart()
         {
             // Handle when your app starts
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Car>();
+                conn.CreateTable<Service>();
+            }
         }
 
         protected override void OnSleep()

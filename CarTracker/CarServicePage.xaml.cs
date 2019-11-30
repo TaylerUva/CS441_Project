@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CarTracker.Models;
 using Xamarin.Forms;
+using SQLite;
+using System.Reflection;
+using System.Globalization;
 
 namespace CarTracker {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -20,7 +23,7 @@ namespace CarTracker {
         public CarServicePage() {
             InitializeComponent();
             PopulateStatementPicker();
-            yourCarsList.ItemsSource = Services;
+            //yourCarsList.ItemsSource = Services;
         }
 
         private void PopulateStatementPicker() {
@@ -38,9 +41,27 @@ namespace CarTracker {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
                 Service newService = new Service(date.Date.ToString(), millage.Text, location.Text, description.Text, car.Text);
-                Services.Add(newService);
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Service>();
+                    conn.Insert(newService);
+                    var serviceList = conn.Table<Service>().ToList();
+
+                    yourCarsList.ItemsSource = serviceList;
+                }
+                //Services.Add(newService);
                 ServiceView.IsVisible = false;
                 ClearEntryFields();
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                var serviceList = conn.Table<Service>().ToList();
+
+                yourCarsList.ItemsSource = serviceList;
             }
         }
 

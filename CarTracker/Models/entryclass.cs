@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace CarTracker.Models
 {
@@ -13,11 +14,15 @@ namespace CarTracker.Models
 
     public class Service
     {
-        public string date { get; }
-        public string millage { get; }
-        public string location { get; }
-        public string description { get; }
-        public string car { get; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string date { get; set; }
+        public string millage { get; set; }
+        public string location { get; set; }
+        public string description { get; set; }
+        public string car { get; set; }
+
+        public Service() { }
 
         public Service(string entryDate, string entryMillage, string entryLocation, string entryDescriprion, string entryCar)
         {

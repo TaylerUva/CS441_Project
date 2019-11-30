@@ -18,7 +18,7 @@
 				   TextDecorations="Underline"
 				   TextColor="White"
 				   HorizontalTextAlignment="Center" />
-			<Label Text="{Binding millage}"
+			<Label Text="{Binding mileage}"
 				   TextColor="White"
 				   HorizontalTextAlignment="Center" />
 

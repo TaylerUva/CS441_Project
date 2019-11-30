@@ -41,9 +41,9 @@
 									<Grid>
 
 										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="Auto" />
-											<ColumnDefinition Width="Auto" />
-											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="50" />
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="*" />
 										</Grid.ColumnDefinitions>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*" />
@@ -51,30 +51,28 @@
 											<RowDefinition Height="*" />
 										</Grid.RowDefinitions>
 
-										<StackLayout Grid.Column="1"
-													 Grid.Row="0"
-													 Orientation="Horizontal">
-											<Label Text="{Binding name}"
-												   TextColor="White" />
-
-										</StackLayout>
-										<StackLayout Grid.Column="2"
-													 Grid.Row="1"
-													 Orientation="Horizontal">
-											<Label Text="{Binding plate}"
-												   TextColor="White" />
-											<Label Text="{Binding vin}"
-												   TextColor="White" />
-										</StackLayout>
-										<StackLayout Grid.Column="2"
-													 Grid.Row="2"
-													 Orientation="Horizontal">
-											<Label Text="{Binding make}"
-												   TextColor="White" />
-											<Label Text="{Binding model}"
-												   TextColor="White" />
-										</StackLayout>
-										<StackLayout Grid.Column="1"
+										<Label Grid.Column="0"
+											   Grid.Row="0"
+											   Grid.ColumnSpan="2"
+											   Text="{Binding name}"
+											   TextColor="White" />
+										<Label Grid.Column="1"
+											   Grid.Row="1"
+											   Text="{Binding plate}"
+											   TextColor="White" />
+										<Label Grid.Column="2"
+											   Grid.Row="1"
+											   Text="{Binding vin}"
+											   TextColor="White" />
+										<Label Grid.Column="1"
+											   Grid.Row="2"
+											   Text="{Binding make}"
+											   TextColor="White" />
+										<Label Grid.Column="2"
+											   Grid.Row="2"
+											   Text="{Binding model}"
+											   TextColor="White" />
+										<StackLayout Grid.Column="0"
 													 Grid.Row="1"
 													 Orientation="Vertical"
 													 Grid.RowSpan="2"
@@ -124,7 +122,7 @@
 							<Entry x:Name="vinEntry"
 								   TextColor="White"
 								   BackgroundColor="#C0808080"
-								   Placeholder="VIM"></Entry>
+								   Placeholder="VIN"></Entry>
 							<Entry x:Name="nameEntry"
 								   TextColor="White"
 								   BackgroundColor="#C0808080"

@@ -54,7 +54,7 @@ namespace CarTracker {
             }
         }
 
-        private void ConfirmNewName(object sender, System.EventArgs e) {
+        private void ConfirmNewService(object sender, System.EventArgs e) {
             if (date.Date.ToString() == null || mileage.Text == null || location.Text == null || description.Text == null) {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
@@ -62,7 +62,7 @@ namespace CarTracker {
                 sqlConn.CreateTable<Service>();
                 sqlConn.Insert(newService);
 
-                yourCarsList.ItemsSource = sqlConn.Table<Service>().ToList();
+                serviceRecordsList.ItemsSource = sqlConn.Table<Service>().ToList();
 
                 newServicePopup.IsVisible = false;
                 SortRecords(null, null);
@@ -72,7 +72,7 @@ namespace CarTracker {
         }
 
         protected override void OnAppearing() {
-            yourCarsList.ItemsSource = sqlConn.Table<Service>().ToList();
+            serviceRecordsList.ItemsSource = sqlConn.Table<Service>().ToList();
             SortRecords(null, null);
         }
 
@@ -93,7 +93,7 @@ namespace CarTracker {
             string sortAttribute = SortingStatement[sortingPicker.SelectedItem.ToString()];
             var carsList = sqlConn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
 
-            yourCarsList.ItemsSource = carsList;
+            serviceRecordsList.ItemsSource = carsList;
         }
 
         private void CancelService(object sender, System.EventArgs e) {

@@ -24,7 +24,7 @@
 						TextColor="White"
 						BackgroundColor="SlateGray"
 						SelectedIndexChanged="SortRecords" />
-				<ListView x:Name="yourCarsList"
+				<ListView x:Name="serviceRecordsList"
 						  HasUnevenRows="True"
 						  ItemTapped="OnCellTapped"
 						  BackgroundColor="Transparent">
@@ -125,7 +125,7 @@
 									BackgroundColor="#C0808080"
 									Title="Car" />
 
-							<Button Clicked="ConfirmNewName"
+							<Button Clicked="ConfirmNewService"
 									TextColor="White"
 									WidthRequest="200"
 									BackgroundColor="DarkSlateGray"

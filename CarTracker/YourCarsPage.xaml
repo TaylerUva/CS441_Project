@@ -20,6 +20,12 @@
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
+								<ViewCell.ContextActions>
+									<MenuItem Clicked="OnDelete"
+											  CommandParameter="{Binding .}"
+											  Text="Delete"
+											  IsDestructive="True" />
+								</ViewCell.ContextActions>
 								<ViewCell.View>
 									<Grid>
 										<Grid.ColumnDefinitions>
@@ -36,7 +42,6 @@
 										<StackLayout Grid.Column="1"
 													 Grid.Row="0"
 													 Orientation="Horizontal">
-											<Label Text="{Binding v_color}" />
 											<Label Text="{Binding name}" />
 
 										</StackLayout>
@@ -52,7 +57,11 @@
 											<Label Text="{Binding make}" />
 											<Label Text="{Binding model}" />
 										</StackLayout>
-										<!--<StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Grid.RowSpan="2" BackgroundColor="AliceBlue"/>-->
+										<StackLayout Grid.Column="1"
+													 Grid.Row="1"
+													 Orientation="Vertical"
+													 Grid.RowSpan="2"
+													 BackgroundColor="{Binding v_color, StringFormat='{0}'}" />
 									</Grid>
 								</ViewCell.View>
 							</ViewCell>
@@ -73,23 +82,23 @@
 								 WidthRequest="300"
 								 BackgroundColor="White">
 						<Entry Margin="20,20,20,10"
-							   x:Name="plate"
+							   x:Name="plateEntry"
 							   Placeholder="License Plate"></Entry>
 						<Entry Margin="20,0,20,0"
-							   x:Name="make"
+							   x:Name="makeEntry"
 							   Placeholder="Make"></Entry>
 						<Entry Margin="20,20,20,10"
-							   x:Name="model"
+							   x:Name="modelEntry"
 							   Placeholder="Model"></Entry>
 						<Picker Margin="20,0,20,0"
 								x:Name="colorPicker"
 								Title="Color" />
 
 						<Entry Margin="20,20,20,10"
-							   x:Name="vin"
+							   x:Name="vinEntry"
 							   Placeholder="VIM"></Entry>
 						<Entry Margin="20,0,20,0"
-							   x:Name="name"
+							   x:Name="nameEntry"
 							   Placeholder="Name"></Entry>
 						<!--
                         <Entry Margin="20,0,20,0"

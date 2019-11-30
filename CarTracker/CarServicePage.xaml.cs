@@ -74,9 +74,9 @@ namespace CarTracker {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 var serviceList = conn.Table<Service>().ToList();
-
                 yourCarsList.ItemsSource = serviceList;
             }
+            OnSortClicked(null, null);
         }
 
         private void ClearEntryFields() {

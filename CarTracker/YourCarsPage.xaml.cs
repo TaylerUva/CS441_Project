@@ -4,13 +4,15 @@ using System.Collections.ObjectModel;
 using CarTracker.Models;
 using Xamarin.Forms;
 using System.Reflection;
-using Color = CarTracker.Models.Color;
-//using CustomCodeAttributes;
+using System.Globalization;
+using SQLite;
+using System.Linq;
+using Color = Xamarin.Forms.Color;
+using System.Threading.Tasks;
 
 namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
 
-        public static ObservableCollection<Car> Cars = new ObservableCollection<Car>();
         public static Dictionary<string, string> SortingAttributes = new Dictionary<string, string>() {
             {"Sort by license plate", "plate"},
             {"Sort by make", "make"},
@@ -23,20 +25,33 @@ namespace CarTracker {
             InitializeComponent();
             PopulateSortingPicker();
             PopulateColorPicker();
-            yourCarsList.ItemsSource = Cars;
+
         }
 
-        //*****For populating from database*****
-        //protected override async void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    yourCarsList.ItemsSource = await App.CarDatabase.GetCarAsync();
-        //}
+        async void OnDelete(object sender, EventArgs e) {
+            var mi = ((MenuItem)sender);
+            var mu = mi.CommandParameter as Car;
+            await DeleteCar(mu);
 
-        //**********************
+        }
 
-        private void PopulateYourCarsList() {
+        async Task DeleteCar(Car car) {
+            var deleteSelected = await DisplayAlert("Are you sure you want to delete this car?", "You cannot undo this action", "Delete", "Cancel");
 
+            if (deleteSelected) {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
+                    conn.Query<Car>("DELETE FROM Car WHERE Id=" + car.Id.ToString());
+                    SortByOption(null, null);
+                }
+            }
+        }
+
+        protected override void OnAppearing() {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
+                var carsList = conn.Table<Car>().ToList();
+
+                yourCarsList.ItemsSource = carsList;
+            }
         }
 
         private void PopulateSortingPicker() {
@@ -54,71 +69,53 @@ namespace CarTracker {
         private void AddNewCarClicked(object sender, System.EventArgs e) {
             popupLoginView.IsVisible = true;
         }
-        
+
         private void ConfirmNewCar(object sender, System.EventArgs e) {
-            Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
-            Cars.Add(newCar);
-            popupLoginView.IsVisible = false;
-            ClearEntryFields();
-        }
+            if (plateEntry.Text == null || makeEntry.Text == null || modelEntry.Text == null || vinEntry.Text == null || nameEntry.Text == null) {
+                DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
+            } else {
 
-        //*******Storing to DB
-        /*
-        async void ConfirmNewCar(object sender, System.EventArgs e)
-        {
-            //Car newCar = new Car(plate.Text, make.Text, model.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vin.Text, name.Text);
-            //Cars.Add(newCar);
-            //popupLoginView.IsVisible = false;
-            //testLabel.Text = "Total Cars: " + Cars.Count.ToString();
-            //ClearEntryFields();
-            if (!string.IsNullOrWhiteSpace(plate.Text))
-            {
-                await App.CarDatabase.SaveCarAsync(new StoredCarsModel
-                {
-                    Plate = plate.Text,
-                    Make = make.Text,
-                    Model = model.Text,
-                    V_Color = Car.nameToColor[colorPicker.SelectedItem.ToString()],
-                    Vin = vin.Text,
-                    Name = name.Text
-                });
+                Car car = new Car(plateEntry.Text, makeEntry.Text, modelEntry.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vinEntry.Text, nameEntry.Text);
+
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
+                    conn.CreateTable<Car>();
+                    conn.Insert(car);
+                    var carsList = conn.Table<Car>().ToList();
+
+                    yourCarsList.ItemsSource = carsList;
+                }
+
+                SortByOption(null, null);
+
+
+                popupLoginView.IsVisible = false;
+
+                ClearEntryFields();
+                popupLoginView.IsVisible = false;
             }
-            popupLoginView.IsVisible = false;
-            ClearEntryFields();
-            yourCarsList.ItemsSource = await App.CarDatabase.GetCarAsync();
-        }*/
-        //************
 
+        }
 
         private void CancelNewCar(object sender, System.EventArgs e) {
             popupLoginView.IsVisible = false;
         }
 
         private void ClearEntryFields() {
-            plate.Text = null;
-            make.Text = null;
-            model.Text = null;
-            vin.Text = null;
-            name.Text = null;
+            plateEntry.Text = null;
+            makeEntry.Text = null;
+            modelEntry.Text = null;
+            vinEntry.Text = null;
+            nameEntry.Text = null;
         }
 
         private void SortByOption(object sender, System.EventArgs e) {
-            List<Car> tempList = new List<Car>(Cars);
-            int minIndex = 0;
+            string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
+                var carsList = conn.Query<Car>("SELECT * FROM Car ORDER BY " + sortAttribute);
 
-            for (int i = 0; i < tempList.Count; i++) {
-                minIndex = i;
-                for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
-                    if (string.Compare(tempList[unsort].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()]), tempList[minIndex].GetAttribute(SortingAttributes[sortPicker.SelectedItem.ToString()])) == -1) {
-                        minIndex = unsort;
-                    }
-                }
-                Car tempCar = tempList[minIndex];
-                tempList[minIndex] = tempList[i];
-                tempList[i] = tempCar;
+                yourCarsList.ItemsSource = carsList;
             }
-            Cars = new ObservableCollection<Car>(tempList);
-            yourCarsList.ItemsSource = Cars;
 
         }
 

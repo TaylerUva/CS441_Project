@@ -30,4 +30,8 @@
       <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.0.3.0\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\CarData.cs" />
+    <Compile Remove="Models\CarDatabase.cs" />
+  </ItemGroup>
 </Project>

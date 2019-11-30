@@ -6,15 +6,19 @@
 			 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
 			 ios:Page.UseSafeArea="true"
 			 mc:Ignorable="d"
-			 x:Class="CarTracker.MainPage">
-	<StackLayout>
-		<!-- Place new controls here -->
-		<Label HorizontalOptions="Center"
+			 x:Class="CarTracker.MainPage"
+             BackgroundImage="space.png">
+    <StackLayout Margin="10">
+
+        <!-- Place new controls here -->
+        <Label HorizontalOptions="Center"
 			   VerticalOptions="CenterAndExpand" />
-      
+        <Image x:Name="myCarPic"/>
+       
         <Button Text="Your Cars"
 				Clicked="YourCarsClicked" />
-		<Button Text="Service Page"
+        <Button Text="Service Page"
 				Clicked="Next_Page_Clicked" />
-	</StackLayout>
+
+    </StackLayout>
 </ContentPage>

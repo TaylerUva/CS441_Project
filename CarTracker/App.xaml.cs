@@ -7,7 +7,6 @@ using SQLite;
 
 namespace CarTracker {
     public partial class App : Application {
-
         public static string FilePath;
 
         public App()
@@ -33,6 +32,7 @@ namespace CarTracker {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.CreateTable<Car>();
+                conn.CreateTable<Service>();
             }
         }
 

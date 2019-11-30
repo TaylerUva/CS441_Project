@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,20 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using CarTracker.Models;
 using Xamarin.Forms;
+using SQLite;
+using System.Reflection;
+using System.Globalization;
 
 namespace CarTracker {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage {
-        public static ObservableCollection<Service> Services = new ObservableCollection<Service>();
-        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by data", "data" }, { "Sort by millage", "millage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
+        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by date", "date" }, { "Sort by millage", "millage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
         };
 
         public CarServicePage() {
             InitializeComponent();
             PopulateStatementPicker();
-            yourCarsList.ItemsSource = Services;
         }
 
         private void PopulateStatementPicker() {
@@ -34,39 +35,58 @@ namespace CarTracker {
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
-            Service newService = new Service(date.Text, millage.Text, location.Text, description.Text, car.Text);
-            Services.Add(newService);
-            ServiceView.IsVisible = false;
-            ClearEntryFields();
+            if (date.Date.ToString() == null || millage.Text == null || location.Text == null || description.Text == null || car.Text == null) {
+                DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
+            } else {
+                Service newService = new Service(date.Date.ToString(), int.Parse(millage.Text), location.Text, description.Text, car.Text);
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Service>();
+                    conn.Insert(newService);
+                    var serviceList = conn.Table<Service>().ToList();
+
+                    yourCarsList.ItemsSource = serviceList;
+                }
+                ServiceView.IsVisible = false;
+                ClearEntryFields();
+            }
+
+        }
+
+        protected override void OnAppearing()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                var serviceList = conn.Table<Service>().ToList();
+
+                yourCarsList.ItemsSource = serviceList;
+            }
         }
 
         private void ClearEntryFields() {
-            date.Text = null;
+            date.Date = DateTime.Now;
             millage.Text = null;
             location.Text = null;
             description.Text = null;
             car.Text = null;
         }
 
-        private void OnSortClicked(object sender, System.EventArgs e) {
-            List<Service> tempList = new List<Service>(Services);
-            int minIndex = 0;
-
-            for (int i = 0; i < tempList.Count; i++) {
-                minIndex = i;
-                for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
-                    if (string.Compare(tempList[unsort].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()]), tempList[minIndex].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()])) == -1) {
-                        minIndex = unsort;
-                    }
-                }
-                Service tempCar = tempList[minIndex];
-                tempList[minIndex] = tempList[i];
-                tempList[i] = tempCar;
-            }
-            Services = new ObservableCollection<Service>(tempList);
-            yourCarsList.ItemsSource = Services;
-
+        async void OnCellTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e) {
+            var content = e.Item as Service;
+            await Navigation.PushAsync(new ServiceDescription(content));
         }
+
+
+        private void OnSortClicked(object sender, System.EventArgs e) {
+            string sortAttribute = SortingStatement[statementPicker.SelectedItem.ToString()];
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                var carsList = conn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
+
+                yourCarsList.ItemsSource = carsList;
+            }
+           
+         }
 
         private void CancelService(object sender, System.EventArgs e) {
             ClearEntryFields();
@@ -104,6 +124,28 @@ namespace CarTracker {
                 Console.WriteLine("Exception caught: {0}", ex);
             }
         }
+        async void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            var deleteService = mi.CommandParameter as Service;
+            await DeleteService(deleteService);
+
+        }
+
+        async Task DeleteService(Service service)
+        {
+            var deleteSelected = await DisplayAlert("Are you sure you want to delete this service?", "You cannot undo this action", "Delete", "Cancel");
+
+            if (deleteSelected)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
+                    OnSortClicked(null, null);
+                }
+            }
+        }
+
 
     }
 

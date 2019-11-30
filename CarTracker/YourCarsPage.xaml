@@ -6,7 +6,7 @@
 			 x:Class="CarTracker.YourCarsPage">
 	<ContentPage.Content>
 		<AbsoluteLayout>
-			<StackLayout>
+			<StackLayout BackgroundColor="#3d3e40">
 				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						Clicked="AddNewCarClicked"
@@ -16,7 +16,8 @@
 						HorizontalOptions="Center"
 						SelectedIndexChanged="SortByOption" />
 				<ListView x:Name="yourCarsList"
-						  HasUnevenRows="True">
+						  HasUnevenRows="True"
+              BackgroundColor="#3d3e40">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -28,6 +29,7 @@
 								</ViewCell.ContextActions>
 								<ViewCell.View>
 									<Grid>
+                    
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="Auto" />
 											<ColumnDefinition Width="Auto" />
@@ -48,14 +50,18 @@
 										<StackLayout Grid.Column="2"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-											<Label Text="{Binding plate}" />
-											<Label Text="{Binding vin}" />
+											<Label Text="{Binding plate}"
+                                                TextColor="White"/>
+											<Label Text="{Binding vin}"
+                                                TextColor="White"/>
 										</StackLayout>
 										<StackLayout Grid.Column="2"
 													 Grid.Row="2"
 													 Orientation="Horizontal">
-											<Label Text="{Binding make}" />
-											<Label Text="{Binding model}" />
+											<Label Text="{Binding make}"
+                                                TextColor="White"/>
+											<Label Text="{Binding model}"
+                                                TextColor="White"/>
 										</StackLayout>
 										<StackLayout Grid.Column="1"
 													 Grid.Row="1"
@@ -80,7 +86,7 @@
 					<StackLayout Orientation="Vertical"
 								 HeightRequest="500"
 								 WidthRequest="300"
-								 BackgroundColor="White">
+								 BackgroundColor="Black">
 						<Entry Margin="20,20,20,10"
 							   x:Name="plateEntry"
 							   Placeholder="License Plate"></Entry>

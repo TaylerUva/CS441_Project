@@ -16,7 +16,8 @@ namespace CarTracker.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
+        //public string date { get; set; }
         public int millage { get; set; }
         public string location { get; set; }
         public string description { get; set; }
@@ -24,7 +25,7 @@ namespace CarTracker.Models
 
         public Service() { }
 
-        public Service(string entryDate, int entryMillage, string entryLocation, string entryDescriprion, string entryCar)
+        public Service(DateTime entryDate, int entryMillage, string entryLocation, string entryDescriprion, string entryCar)
         {
             date = entryDate;
             millage = entryMillage;

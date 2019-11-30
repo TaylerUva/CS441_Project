@@ -38,7 +38,7 @@ namespace CarTracker {
             if (date.Date.ToString() == null || millage.Text == null || location.Text == null || description.Text == null || car.Text == null) {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
-                Service newService = new Service(date.Date.ToString(), int.Parse(millage.Text), location.Text, description.Text, car.Text);
+                Service newService = new Service(date.Date, int.Parse(millage.Text), location.Text, description.Text, car.Text);
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
                     conn.CreateTable<Service>();
@@ -48,6 +48,7 @@ namespace CarTracker {
                     yourCarsList.ItemsSource = serviceList;
                 }
                 ServiceView.IsVisible = false;
+                OnSortClicked(null, null);
                 ClearEntryFields();
             }
 

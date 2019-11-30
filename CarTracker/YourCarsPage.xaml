@@ -8,14 +8,20 @@
 			 x:Class="CarTracker.YourCarsPage">
 	<ContentPage.Content>
 		<AbsoluteLayout>
-			<StackLayout>
+			<StackLayout Margin="10">
 				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
+						TextColor="White"
+						WidthRequest="200"
+						BackgroundColor="DarkSlateGray"
 						Clicked="AddNewCarClicked"
 						Text="Add New Car" />
 				<Picker x:Name="sortPicker"
 						Title="Sort by"
+						WidthRequest="200"
 						HorizontalOptions="Center"
+						TextColor="White"
+						BackgroundColor="SlateGray"
 						SelectedIndexChanged="SortByOption" />
 				<ListView x:Name="yourCarsList"
 						  HasUnevenRows="True"

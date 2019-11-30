@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace CarTracker {
     public partial class YourCarsPage : ContentPage {
 
-        public static ObservableCollection<Car> Cars = new ObservableCollection<Car>();
         public static Dictionary<string, string> SortingAttributes = new Dictionary<string, string>() {
             {"Sort by license plate", "plate"},
             {"Sort by make", "make"},
@@ -36,14 +35,11 @@ namespace CarTracker {
 
         }
 
-        async Task DeleteCar(Car car)
-        {
+        async Task DeleteCar(Car car) {
             var deleteSelected = await DisplayAlert("Are you sure you want to delete this car?", "You cannot undo this action", "Delete", "Cancel");
 
-            if (deleteSelected)
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                {
+            if (deleteSelected) {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.Query<Car>("DELETE FROM Car WHERE Id=" + car.Id.ToString());
                     SortByOption(null, null);
                 }
@@ -80,7 +76,7 @@ namespace CarTracker {
             } else {
 
                 Car car = new Car(plateEntry.Text, makeEntry.Text, modelEntry.Text, Car.nameToColor[colorPicker.SelectedItem.ToString()], vinEntry.Text, nameEntry.Text);
-                   
+
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                     conn.CreateTable<Car>();
@@ -92,9 +88,9 @@ namespace CarTracker {
 
                 SortByOption(null, null);
 
-               
+
                 popupLoginView.IsVisible = false;
-               
+
                 ClearEntryFields();
                 popupLoginView.IsVisible = false;
             }

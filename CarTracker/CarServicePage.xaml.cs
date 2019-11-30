@@ -16,12 +16,13 @@ namespace CarTracker {
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage {
-        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by date", "date" }, { "Sort by millage", "millage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
+        public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by date", "date" }, { "Sort by mileage", "mileage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
         };
 
         public CarServicePage() {
             InitializeComponent();
             PopulateStatementPicker();
+            PopulateCarPicker();
         }
 
         private void PopulateStatementPicker() {
@@ -30,15 +31,29 @@ namespace CarTracker {
             statementPicker.SelectedItem = PickerStatementOption[0];
         }
 
+        private void PopulateCarPicker()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                var serviceList = conn.Table<Car>().ToList();
+                var nicknames = new List<string>();
+                foreach (Car element in serviceList)
+                {
+                    nicknames.Add(element.name);
+                }
+                carPicker.ItemsSource = nicknames;
+            }
+        }
+
         private void AddNewCarClicked(object sender, System.EventArgs e) {
             ServiceView.IsVisible = true;
         }
 
         private void ConfirmNewName(object sender, System.EventArgs e) {
-            if (date.Date.ToString() == null || millage.Text == null || location.Text == null || description.Text == null || car.Text == null) {
+            if (date.Date.ToString() == null || mileage.Text == null || location.Text == null || description.Text == null) {
                 DisplayAlert("Missing information!", "Please fill in all the fields", "Ok");
             } else {
-                Service newService = new Service(date.Date, int.Parse(millage.Text), location.Text, description.Text, car.Text);
+                Service newService = new Service(date.Date, int.Parse(mileage.Text), location.Text, description.Text, carPicker.SelectedItem.ToString());
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
                     conn.CreateTable<Service>();
@@ -66,10 +81,9 @@ namespace CarTracker {
 
         private void ClearEntryFields() {
             date.Date = DateTime.Now;
-            millage.Text = null;
+            mileage.Text = null;
             location.Text = null;
             description.Text = null;
-            car.Text = null;
         }
 
         async void OnCellTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e) {

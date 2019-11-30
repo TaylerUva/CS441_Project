@@ -18,9 +18,8 @@
 			   HorizontalTextAlignment="Center"
 			   FontSize="50"
 			   TextColor="White" />
-		<Image x:Name="myCarPic"
+		<Image Source="carService.png"
 			   Margin="0,40,0,40" />
-
 		<Button Text="Your Cars"
 				BackgroundColor="DarkSlateGray"
 				TextColor="White"
@@ -28,7 +27,7 @@
 		<Button Text="Service Records"
 				TextColor="White"
 				BackgroundColor="DarkSlateGray"
-				Clicked="Next_Page_Clicked" />
+				Clicked="ServiceRecordsClicked" />
 
 	</StackLayout>
 </ContentPage>

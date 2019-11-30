@@ -93,7 +93,7 @@
 						 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
 						 AbsoluteLayout.LayoutFlags="All">
 				<StackLayout VerticalOptions="Center"
-							 HeightRequest="500"
+							 HeightRequest="600"
 							 WidthRequest="300"
 							 HorizontalOptions="Center">
 					<Grid>

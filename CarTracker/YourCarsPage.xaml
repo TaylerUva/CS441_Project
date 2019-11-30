@@ -8,7 +8,8 @@
 			 x:Class="CarTracker.YourCarsPage">
 	<ContentPage.Content>
 		<AbsoluteLayout>
-			<StackLayout Margin="10">
+			<StackLayout Spacing="10"
+						 Margin="0,10">
 				<Button HorizontalOptions="Center"
 						VerticalOptions="Center"
 						TextColor="White"

@@ -59,7 +59,7 @@
                                         <StackLayout Grid.Column="3"
 													 Grid.Row="1"
 													 Orientation="Horizontal">
-                                            <Label Text="{Binding millage}"
+                                            <Label Text="{Binding mileage}"
 												   TextColor="White" />
                                         </StackLayout>
 
@@ -91,8 +91,8 @@
                         <DatePicker x:Name="date"
 									Margin="20,20,20,10" />
                         <Entry Margin="20,0,20,0"
-							   x:Name="millage"
-							   Placeholder="Millage"
+							   x:Name="mileage"
+							   Placeholder="mileage"
 							   TextChanged="TextChange"
 							   Keyboard="Numeric"></Entry>
                         <Entry Margin="20,20,20,10"
@@ -101,10 +101,9 @@
                         <Entry Margin="20,0,20,0"
 							   x:Name="description"
 							   Placeholder="Description"></Entry>
-                        <Entry Margin="20,20,20,10"
-							   x:Name="car"
-							   Placeholder="Car"></Entry>
-
+                        <Picker Margin="20,0,20,0"
+								x:Name="carPicker"
+								Title="Car" />
 
                         <Button Clicked="ConfirmNewName"
 								Margin="20,0,20,0"

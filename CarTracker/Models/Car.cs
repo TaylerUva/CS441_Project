@@ -3,27 +3,6 @@ using System.Collections.Generic;
 using SQLite;
 
 namespace CarTracker.Models {
-    public enum Color {
-        //TODO: Add more colors
-        Black,
-        Blue,
-        Gray,
-        Aqua,
-        Fuchsia,
-        Green,
-        Lime,
-        Maroon,
-        Olive,
-        Purple,
-        Red,
-        Silver,
-        Teal,
-        White,
-        Yellow,
-    };
-
-
-
 
     public class Car {
         [PrimaryKey, AutoIncrement]
@@ -35,7 +14,6 @@ namespace CarTracker.Models {
         public string vin { get; set; }
         public string name { get; set; }
         //TODO: Add photo
-        // Test
 
         public Car() { }
 
@@ -46,10 +24,6 @@ namespace CarTracker.Models {
             v_color = vehicleColor;
             vin = vehicleVin;
             name = carNickname;
-        }
-        
-        public void ChangeNickName(string newNickname) {
-            name = newNickname;
         }
 
         public string GetAttribute(string attribute) {
@@ -68,6 +42,25 @@ namespace CarTracker.Models {
                 return null;
             }
         }
+
+        public enum Color {
+            //TODO: Add more colors
+            Black,
+            Blue,
+            Gray,
+            Aqua,
+            Fuchsia,
+            Green,
+            Lime,
+            Maroon,
+            Olive,
+            Purple,
+            Red,
+            Silver,
+            Teal,
+            White,
+            Yellow,
+        };
 
         // Dictionary to get Color from color name.
         public static Dictionary<string, Color> nameToColor = new Dictionary<string, Color>()

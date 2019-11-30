@@ -49,9 +49,10 @@ namespace CarTracker {
         protected override void OnAppearing() {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Table<Car>().ToList();
-
                 yourCarsList.ItemsSource = carsList;
             }
+            SortByOption(null, null);
+
         }
 
         private void PopulateSortingPicker() {

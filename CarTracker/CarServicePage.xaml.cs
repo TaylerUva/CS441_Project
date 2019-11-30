@@ -16,14 +16,12 @@ namespace CarTracker {
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class CarServicePage : ContentPage {
-        public static ObservableCollection<Service> Services = new ObservableCollection<Service>();
         public static Dictionary<string, string> SortingStatement = new Dictionary<string, string>() { { "Sort by date", "date" }, { "Sort by millage", "millage" }, { "Sort by location", "location" }, { "Sort by description", "description" }, { "Sort by car", "car" }
         };
 
         public CarServicePage() {
             InitializeComponent();
             PopulateStatementPicker();
-            //yourCarsList.ItemsSource = Services;
         }
 
         private void PopulateStatementPicker() {
@@ -49,7 +47,6 @@ namespace CarTracker {
 
                     yourCarsList.ItemsSource = serviceList;
                 }
-                //Services.Add(newService);
                 ServiceView.IsVisible = false;
                 ClearEntryFields();
             }
@@ -81,7 +78,6 @@ namespace CarTracker {
 
 
         private void OnSortClicked(object sender, System.EventArgs e) {
-            //string sortAttribute = SortingAttributes[sortPicker.SelectedItem.ToString()];
             string sortAttribute = SortingStatement[statementPicker.SelectedItem.ToString()];
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -89,25 +85,7 @@ namespace CarTracker {
 
                 yourCarsList.ItemsSource = carsList;
             }
-                /*
-                List<Service> tempList = new List<Service>(Services);
-                int minIndex = 0;
-
-                for (int i = 0; i < tempList.Count; i++) {
-                    minIndex = i;
-                    for (int unsort = i + 1; unsort < tempList.Count; unsort++) {
-                        if (string.Compare(tempList[unsort].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()]), tempList[minIndex].GetStatement(SortingStatement[statementPicker.SelectedItem.ToString()])) == -1) {
-                            minIndex = unsort;
-                        }
-                    }
-                    Service tempCar = tempList[minIndex];
-                    tempList[minIndex] = tempList[i];
-                    tempList[i] = tempCar;
-                }
-                Services = new ObservableCollection<Service>(tempList);
-                yourCarsList.ItemsSource = Services;
-                */
-
+           
          }
 
         private void CancelService(object sender, System.EventArgs e) {
@@ -146,6 +124,29 @@ namespace CarTracker {
                 Console.WriteLine("Exception caught: {0}", ex);
             }
         }
+        async void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            var mu = mi.CommandParameter as Service;
+            await DeleteService(mu);
+
+        }
+
+        async Task DeleteService(Service service)
+        {
+            var deleteSelected = await DisplayAlert("Are you sure you want to delete this service?", "You cannot undo this action", "Delete", "Cancel");
+
+            if (deleteSelected)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.Query<Service>("DELETE FROM Service WHERE Id=" + service.Id.ToString());
+                    OnSortClicked(null, null);
+                    //SortByOption(null, null);
+                }
+            }
+        }
+
 
     }
 

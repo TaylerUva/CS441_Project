@@ -21,13 +21,13 @@ namespace CarTracker {
 
         public CarServicePage() {
             InitializeComponent();
-            PopulateStatementPicker();
+            PopulateSortingPicker();
         }
 
-        private void PopulateStatementPicker() {
+        private void PopulateSortingPicker() {
             var PickerStatementOption = new List<string>(SortingStatement.Keys);
-            statementPicker.ItemsSource = PickerStatementOption;
-            statementPicker.SelectedItem = PickerStatementOption[0];
+            sortingPicker.ItemsSource = PickerStatementOption;
+            sortingPicker.SelectedItem = PickerStatementOption[0];
         }
 
         private void PopulateCarPicker() {
@@ -47,7 +47,7 @@ namespace CarTracker {
                 var addNewCarSelected = await DisplayAlert("You don't have any cars to service!", "Please add a car to service", "Add New Car", "Cancel");
                 if (addNewCarSelected) await Navigation.PushAsync(new YourCarsPage());
             } else {
-                ServiceView.IsVisible = true;
+                newServicePopup.IsVisible = true;
             }
         }
 
@@ -63,7 +63,7 @@ namespace CarTracker {
 
                     yourCarsList.ItemsSource = serviceList;
                 }
-                ServiceView.IsVisible = false;
+                newServicePopup.IsVisible = false;
                 OnSortClicked(null, null);
                 ClearEntryFields();
             }
@@ -92,7 +92,7 @@ namespace CarTracker {
 
 
         private void OnSortClicked(object sender, System.EventArgs e) {
-            string sortAttribute = SortingStatement[statementPicker.SelectedItem.ToString()];
+            string sortAttribute = SortingStatement[sortingPicker.SelectedItem.ToString()];
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath)) {
                 var carsList = conn.Query<Service>("SELECT * FROM Service ORDER BY " + sortAttribute);
 
@@ -103,7 +103,7 @@ namespace CarTracker {
 
         private void CancelService(object sender, System.EventArgs e) {
             ClearEntryFields();
-            ServiceView.IsVisible = false;
+            newServicePopup.IsVisible = false;
 
         }
 

@@ -17,7 +17,7 @@
 						BackgroundColor="DarkSlateGray"
 						Clicked="AddNewCarClicked"
 						Text="Record Service" />
-				<Picker x:Name="statementPicker"
+				<Picker x:Name="sortingPicker"
 						Title="Sort by"
 						HorizontalOptions="Center"
 						WidthRequest="200"
@@ -82,7 +82,7 @@
 					</ListView.ItemTemplate>
 				</ListView>
 			</StackLayout>
-			<ContentView x:Name="ServiceView"
+			<ContentView x:Name="newServicePopup"
 						 BackgroundColor="#C0808080"
 						 Padding="10, 0"
 						 IsVisible="false"
